@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "shelter-frontend"
+  "cli": {
+    "analytics": false
+  }
 }
