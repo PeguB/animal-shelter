@@ -1,6 +1,7 @@
 package pi.shelterservice.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +12,7 @@ import pi.shelterservice.model.AuthenticationRequest;
 import pi.shelterservice.service.AuthenticationService;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/v1/auth")
 public class AuthenticationController {
 
 
@@ -23,10 +24,11 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<Void> register(
             @RequestBody AuthenticationRequest request
     ) {
-        return ResponseEntity.ok(service.register(request));
+        service.register(request);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(

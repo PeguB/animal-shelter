@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import pi.shelterservice.repository.TokenRepository;
 import pi.shelterservice.service.JwtService;
 
 import java.io.IOException;
@@ -23,7 +22,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
-    private final TokenRepository tokenRepository;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var header = request.getHeader("Authorization");
@@ -40,10 +38,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         var userUsername = jwtService.extractUsername(jwtToken);
         if (userUsername != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userUsername);
-            var isTokenValid = tokenRepository.findTokenEntityByUsername(userUsername)
-                    .map(t -> !t.isExpired())
-                    .orElse(false);
-            if (jwtService.isTokenValid(jwtToken, userDetails) && isTokenValid) {
+
+            if (jwtService.isTokenValid(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
