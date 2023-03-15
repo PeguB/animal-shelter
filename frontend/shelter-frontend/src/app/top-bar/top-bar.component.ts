@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  tabNumber : number;
+
+  constructor() {
+    this.tabNumber = 1;
+  }
 
   ngOnInit(): void {
+  }
+
+  public selectNavBarTab(currentTab: number) {
+    this.tabNumber = currentTab;
+  }
+
+  public isTabSelected(currentTab: number): boolean {
+    return this.tabNumber === currentTab;
   }
 
 }

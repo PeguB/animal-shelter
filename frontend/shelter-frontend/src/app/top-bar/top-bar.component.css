@@ -19,16 +19,22 @@
 .spacer {
   flex: 1;
 }
-a{
+
+button{
   margin-left: 2%;
   margin-right: 2%;
   font-size: 1.1em;
 }
 
-a.mat-button:hover{
-  color: #FFCA28;
+span{
+  font-size: 1.2em;
+}
+
+.mat-active{
+  color: #FFE082;
   text-decoration: underline;
 }
+
 
 
 

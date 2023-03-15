@@ -6,13 +6,13 @@
   />
   <span>Lucky Paws Rescue</span>
   <span class="spacer"></span>
-  <a mat-button class="mat-button">Home</a>
-  <a mat-button class="mat-button">Pets</a>
-  <a mat-button class="mat-button">Adopt</a>
+  <button mat-button (click) = "selectNavBarTab(1)" [class.mat-active]="isTabSelected(1)">Home</button>
+  <button mat-button (click) = "selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)">Pets</button>
+  <button mat-button (click) = "selectNavBarTab(3)" [class.mat-active]="isTabSelected(3)">Adopt</button>
   <span class="spacer"></span>
-  <a mat-raised-button class="mat-button">
+  <button mat-raised-button>
     <mat-icon class="icon-display">perm_identity</mat-icon>
     Log in
-  </a>
+  </button>
 
 </div>
