@@ -1,0 +1,40 @@
+.toolbar {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #5E35B1;
+  color: white;
+  font-weight: 600;
+  font-size: 1.3em;
+  position: fixed;
+}
+
+.toolbar img {
+  margin: 0 16px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+button{
+  margin-left: 2%;
+  margin-right: 2%;
+  font-size: 1.1em;
+}
+
+span{
+  font-size: 1.2em;
+}
+
+.mat-active{
+  color: #FFE082;
+  text-decoration: underline;
+}
+
+
+
+
