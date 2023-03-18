@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pi.shelterservice.model.AuthenticationResponse;
 import pi.shelterservice.model.AuthenticationRequest;
+import pi.shelterservice.model.RegisterRequest;
 import pi.shelterservice.service.AuthenticationService;
 
 @RestController
@@ -25,7 +26,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(
-            @RequestBody AuthenticationRequest request
+            @RequestBody RegisterRequest request
     ) {
         service.register(request);
         return new ResponseEntity<>(HttpStatus.OK);
