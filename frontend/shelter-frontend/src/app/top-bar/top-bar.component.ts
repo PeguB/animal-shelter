@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  tabNumber : number;
+  tabNumber: number;
 
   constructor() {
     this.tabNumber = 1;
@@ -22,6 +22,10 @@ export class TopBarComponent implements OnInit {
 
   public isTabSelected(currentTab: number): boolean {
     return this.tabNumber === currentTab;
+  }
+
+  public unSelectTabs(): void {
+    this.tabNumber = -1;
   }
 
 }

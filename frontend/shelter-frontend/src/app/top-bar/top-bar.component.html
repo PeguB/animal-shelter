@@ -1,25 +1,25 @@
 <div class="toolbar" role="banner">
   <img
-    width="50"
-    alt="Lucky Paws Logo"
     [src]="'assets/images/LPR_Logo.png'"
+    alt="Lucky Paws Logo"
+    width="50"
   />
   <span>Lucky Paws Rescue</span>
   <span class="spacer"></span>
-  <button mat-button (click) = "selectNavBarTab(1)" [class.mat-active]="isTabSelected(1)">
+  <button (click)="selectNavBarTab(1)" [class.mat-active]="isTabSelected(1)" mat-button>
     <mat-icon class="icon-display">home</mat-icon>
     Home
   </button>
-  <button mat-button (click) = "selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)">
+  <button (click)="selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)" mat-button>
     <mat-icon class="icon-display">pets</mat-icon>
     Pets
   </button>
-  <button mat-button (click) = "selectNavBarTab(3)" [class.mat-active]="isTabSelected(3)">
+  <button (click)="selectNavBarTab(3)" [class.mat-active]="isTabSelected(3)" mat-button>
     <mat-icon>favorite</mat-icon>
     Adopt
   </button>
   <span class="spacer"></span>
-  <button mat-raised-button routerLink="/login">
+  <button (click)="unSelectTabs()" mat-raised-button routerLink="../login">
     <mat-icon class="icon-display">perm_identity</mat-icon>
     Log in
   </button>
