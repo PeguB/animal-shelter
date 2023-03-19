@@ -21,21 +21,20 @@
   flex: 1;
 }
 
-button{
+button {
   margin-left: 2%;
   margin-right: 2%;
   font-size: 1.1em;
 }
 
-span{
+span {
   font-size: 1.2em;
 }
 
-.mat-active{
+.active {
   color: #FFE082;
   text-decoration: underline;
 }
-
 
 
 

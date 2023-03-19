@@ -24,8 +24,4 @@ export class TopBarComponent implements OnInit {
     return this.tabNumber === currentTab;
   }
 
-  public unSelectTabs(): void {
-    this.tabNumber = -1;
-  }
-
 }
