@@ -18,6 +18,7 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
     public ErrorResponse handleUserAlreadyExist(Exception ex, WebRequest request){
         return ErrorResponse.builder(ex,HttpStatus.CONFLICT,"")
                 .detail(ex.getMessage())
+                .property("errorType",ex.getMessage().split(" ")[0])
                 .build();
     }
 
