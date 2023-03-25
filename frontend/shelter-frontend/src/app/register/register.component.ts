@@ -3,6 +3,9 @@ import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AccountService} from "../_services/account.service";
 import {AlertService} from "../_services/alert.service";
+import {User} from "../_models";
+import {first, throwError} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
@@ -59,6 +62,30 @@ export class RegisterComponent implements OnInit {
     //       this.loading = false;
     //     }
     //   });
+    let user: User = {
+      firstName: this.registerForm.value.firstName!,
+      lastName: this.registerForm.value.lastName!,
+      email: this.registerForm.value.email!,
+      phoneNumber: this.registerForm.value.phoneNumber!,
+      username: this.registerForm.value.username!,
+      password: this.registerForm.value.password!
+
+
+    }
+    this.accountService.register(user)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          console.log("Registration successful");
+          this.alertService.success('Registration successful', {keepAfterRouteChange: true});
+          this.router.navigate(['../login'], {relativeTo: this.route});
+        },
+        error: error => {
+          this.handleError(error);
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
   }
 
   //
@@ -82,6 +109,19 @@ export class RegisterComponent implements OnInit {
         {passwordValidator: {value: control.value}} : null;
     }
     return null;
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
 }

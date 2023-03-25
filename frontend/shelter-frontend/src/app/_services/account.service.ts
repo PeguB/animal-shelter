@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {User} from "../_models/user";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AccountService {
 
   constructor(
     private router: Router,
-    //private http: HttpClient
+    private http: HttpClient
   ) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     this.user = this.userSubject.asObservable();
@@ -41,7 +42,7 @@ export class AccountService {
   }
 
   register(user: User) {
-    // return this.http.post(`${environment.apiUrl}/users/register`, user);
+     return this.http.post(`http://localhost:8080/v1/auth/register`, user);
   }
 
   getAll() {

@@ -3,10 +3,7 @@ package pi.shelterservice.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pi.shelterservice.model.AuthenticationResponse;
 import pi.shelterservice.model.AuthenticationRequest;
 import pi.shelterservice.model.RegisterRequest;
@@ -15,6 +12,7 @@ import pi.shelterservice.service.impl.AuthenticationServiceImpl;
 
 @RestController
 @RequestMapping("/v1/auth")
+@CrossOrigin
 public class AuthenticationController {
 
 
