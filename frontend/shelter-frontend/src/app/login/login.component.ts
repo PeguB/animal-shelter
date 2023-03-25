@@ -14,13 +14,12 @@ import {AlertService} from "../_services/alert.service";
 export class LoginComponent implements OnInit {
 
   loginForm = this.formBuilder.group({
-    username: ['', [Validators.required]],
+    username: ['', Validators.required],
     password: ['', Validators.required]
   });
   loading = false;
   submitted = false;
   returnUrl: string | undefined;
-  error = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,14 +35,7 @@ export class LoginComponent implements OnInit {
     // }
   }
 
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.loginForm.controls;
-  }
-
   ngOnInit() {
-
-    // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
