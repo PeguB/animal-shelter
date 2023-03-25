@@ -11,6 +11,7 @@ import pi.shelterservice.model.AuthenticationResponse;
 import pi.shelterservice.model.AuthenticationRequest;
 import pi.shelterservice.model.RegisterRequest;
 import pi.shelterservice.service.AuthenticationService;
+import pi.shelterservice.service.impl.AuthenticationServiceImpl;
 
 @RestController
 @RequestMapping("/v1/auth")

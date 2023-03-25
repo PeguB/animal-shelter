@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.AnimalType;
 import pi.shelterservice.service.AnimalService;
+import pi.shelterservice.service.impl.AnimalServiceImpl;
 
 @RestController
 @RequestMapping("/v1")
