@@ -82,7 +82,8 @@ export class RegisterComponent implements OnInit {
         },
         error: error => {
           this.handleError(error);
-          this.alertService.error(error);
+          this.alertService.error(error.error.detail);
+          console.log('print la eroare: ' + error.error.detail);
           this.loading = false;
         }
       });
@@ -110,6 +111,7 @@ export class RegisterComponent implements OnInit {
     }
     return null;
   }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

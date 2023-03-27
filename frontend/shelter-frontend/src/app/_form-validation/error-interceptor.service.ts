@@ -19,7 +19,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
       }
 
       const error = (err && err.error && err.error.message) || err.statusText;
-      console.error(err);
+      console.error('Eroare tampita' + err);
       return throwError(error);
     }))
   }

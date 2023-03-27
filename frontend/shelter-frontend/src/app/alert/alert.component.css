@@ -1,0 +1,11 @@
+.close {
+  color: white;
+  align-items: flex-end;
+  margin-left: 70%;
+  margin-right: 0;
+  padding: 0;
+}
+
+.container {
+  width: 70%;
+}

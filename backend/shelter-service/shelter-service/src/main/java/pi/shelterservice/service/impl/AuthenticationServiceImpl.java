@@ -58,15 +58,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private void searchUser(RegisterRequest request){
         userRepository.findByUsername(request.username()).ifPresent(s -> {
-            throw new UserAlreadyExist("Username already exists");
-        });
-
-        userRepository.findByPhoneNumber(request.phoneNumber()).ifPresent(s->{
-            throw new PhoneNumberAlreadyExist("Phone already exists");
+            throw new UserAlreadyExist("This username is already taken");
         });
 
         userRepository.findByEmail(request.email()).ifPresent(s->{
-            throw new EmailAlreadyExist("Email already exists");
+            throw new EmailAlreadyExist("This email is already in use");
         });
+
+        userRepository.findByPhoneNumber(request.phoneNumber()).ifPresent(s->{
+            throw new PhoneNumberAlreadyExist("This phone number is already in use");
+        });
+
+
     }
 }
