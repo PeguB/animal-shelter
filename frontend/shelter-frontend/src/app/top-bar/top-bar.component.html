@@ -20,12 +20,22 @@
           routerLinkActive="active">
     <mat-icon>favorite</mat-icon>
     Adopt
+
   </button>
   <span class="spacer"></span>
-  <button (click)="selectNavBarTab(4)" [class.mat-active]="isTabSelected(4)" mat-raised-button routerLink="../login"
+  <button (click)="selectNavBarTab(4)" *ngIf="!isLoggedIn(); else elseBlock" [class.mat-active]="isTabSelected(4)"
+          mat-raised-button routerLink="../login"
           routerLinkActive="active">
     <mat-icon class="icon-display">perm_identity</mat-icon>
     Log in
   </button>
+
+  <ng-template #elseBlock>
+    <p>Hello, {{getUserName()}}!</p>
+    <button (click)="logOut()" mat-raised-button routerLink="../home"
+            routerLinkActive="active">
+      Log out
+    </button>
+  </ng-template>
 
 </div>

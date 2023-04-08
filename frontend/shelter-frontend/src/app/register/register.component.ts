@@ -40,28 +40,15 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // reset alerts on submit
     this.alertService.clear();
-
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
 
     this.loading = true;
-    // this.accountService.register(this.form.value)
-    //   .pipe(first())
-    //   .subscribe({
-    //     next: () => {
-    //       this.alertService.success('Registration successful, please check your email for verification instructions', {keepAfterRouteChange: true});
-    //       this.router.navigate(['../login'], {relativeTo: this.route});
-    //     },
-    //     error: error => {
-    //       this.alertService.error(error);
-    //       this.loading = false;
-    //     }
-    //   });
+
     let user: User = {
       firstName: this.registerForm.value.firstName!,
       lastName: this.registerForm.value.lastName!,
@@ -69,8 +56,6 @@ export class RegisterComponent implements OnInit {
       phoneNumber: this.registerForm.value.phoneNumber!,
       username: this.registerForm.value.username!,
       password: this.registerForm.value.password!
-
-
     }
     this.accountService.register(user)
       .pipe(first())
@@ -83,26 +68,10 @@ export class RegisterComponent implements OnInit {
         error: error => {
           this.handleError(error);
           this.alertService.error(error.error.detail);
-          console.log('print la eroare: ' + error.error.detail);
           this.loading = false;
         }
       });
   }
-
-  //
-  // private passwordValidator(control: AbstractControl) {
-  //   const passwordControl = control.root.get('password');
-  //   const matchPasswordControl = control;
-  //   if (matchPasswordControl.errors) {
-  //     // return if another validator has already found an error on the matchingControl
-  //     return;
-  //   }
-  //   if (passwordControl) {
-  //     return passwordControl?.value != matchPasswordControl.value ?
-  //       {passwordValidator: {value: matchPasswordControl.value}} : null;
-  //   }
-  //   return null;
-  // }
 
   private passwordValidator(control: AbstractControl) {
     if (control.root.get('password')) {
@@ -114,15 +83,11 @@ export class RegisterComponent implements OnInit {
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 

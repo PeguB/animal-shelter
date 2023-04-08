@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AccountService} from "../_services/account.service";
 
 @Component({
   selector: 'app-top-bar',
@@ -9,7 +10,9 @@ export class TopBarComponent implements OnInit {
 
   tabNumber: number;
 
-  constructor() {
+  constructor(
+    private accountService: AccountService
+  ) {
     this.tabNumber = 1;
   }
 
@@ -24,4 +27,15 @@ export class TopBarComponent implements OnInit {
     return this.tabNumber === currentTab;
   }
 
+  public isLoggedIn(): boolean {
+    return this.accountService.tokenValue != null;
+  }
+
+  public getUserName(): string | undefined {
+    return this.accountService.tokenValue;
+  }
+
+  public logOut(): void {
+    return this.accountService.logout();
+  }
 }

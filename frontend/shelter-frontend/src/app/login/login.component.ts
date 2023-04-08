@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AccountService} from "../_services/account.service";
 import {AlertService} from "../_services/alert.service";
+import {first, throwError} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UserCredentials} from "../_models/user-credentials";
 
 @Component({
     selector: 'app-login',
@@ -29,40 +32,54 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
   ) {
 
-    // redirect to home if already logged in
-    // if (this.authenticationService.currentUserValue) {
-    //   this.router.navigate(['/']);
-    // }
   }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // console.log(this.accountService.userValue);
+    //route to home if user is logged in
+    if (this.accountService.tokenValue) {
+      this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {
     this.submitted = true;
-
     // reset alerts on submit
     this.alertService.clear();
-
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
 
     this.loading = true;
-    // this.accountService.login(this.f['email'].value, this.f['password'].value)
-    //   .pipe(first())
-    //   .subscribe({
-    //     next: () => {
-    //       // get return url from query parameters or default to home page
-    //       const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    //       this.router.navigateByUrl(returnUrl);
-    //     },
-    //     error: error => {
-    //       this.alertService.error(error);
-    //       this.loading = false;
-    //     }
-    //   });
+    let user: UserCredentials = {
+      username: this.loginForm.value.username!,
+      password: this.loginForm.value.password!
+    }
+    this.accountService.login(user)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          console.log("Login successful");
+          this.alertService.success('Login successful', {keepAfterRouteChange: true});
+          this.router.navigate(['../home'], {relativeTo: this.route});
+        },
+        error: error => {
+          this.handleError(error);
+          this.alertService.error(error.error.detail);
+          this.loading = false;
+        }
+      });
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

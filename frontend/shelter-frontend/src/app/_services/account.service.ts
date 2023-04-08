@@ -1,30 +1,32 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {map} from "rxjs";
 import {Router} from "@angular/router";
 import {User} from "../_models/user";
 import {HttpClient} from "@angular/common/http";
+import {UserCredentials} from "../_models/user-credentials";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  public user: Observable<User>;
-  private userSubject: BehaviorSubject<User>;
-
   constructor(
     private router: Router,
     private http: HttpClient
   ) {
-    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
-    this.user = this.userSubject.asObservable();
+
   }
 
-  public get userValue(): User {
-    return this.userSubject.value;
+  public get tokenValue(): any {
+    return JSON.parse(localStorage.getItem('token')!);
   }
 
-  login(username: string, password: string) {
+  login(user: UserCredentials) {
+    return this.http.post(`http://localhost:8080/v1/auth/authenticate`, user)
+      .pipe(map(tokenValue => {
+        localStorage.setItem('token', JSON.stringify(tokenValue));
+      }))
+
     // return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, {username, password})
     //   .pipe(map(user => {
     //     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -36,13 +38,13 @@ export class AccountService {
 
   logout() {
     // remove user from local storage and set current user to null
-    // localStorage.removeItem('user');
+    localStorage.removeItem('token');
     // this.userSubject.next(null);
-    // this.router.navigate(['/account/login']);
+    this.router.navigate(['../login']);
   }
 
   register(user: User) {
-     return this.http.post(`http://localhost:8080/v1/auth/register`, user);
+    return this.http.post(`http://localhost:8080/v1/auth/register`, user);
   }
 
   getAll() {

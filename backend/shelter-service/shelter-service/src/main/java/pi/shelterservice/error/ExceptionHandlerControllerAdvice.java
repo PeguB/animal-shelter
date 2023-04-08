@@ -3,6 +3,7 @@ package pi.shelterservice.error;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,14 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
         return ErrorResponse.builder(ex,HttpStatus.CONFLICT,"")
                 .detail(ex.getMessage())
                 .property("errorType",ex.getMessage().split(" ")[0])
+                .build();
+    }
+
+    @ExceptionHandler(value = {AuthenticationException.class})
+    public ErrorResponse handleInvalidCredentials(Exception ex, WebRequest request){
+        return ErrorResponse.builder(ex,HttpStatus.FORBIDDEN,"")
+                .detail(ex.getMessage())
+                .property("errorType", "Invalid")
                 .build();
     }
 
