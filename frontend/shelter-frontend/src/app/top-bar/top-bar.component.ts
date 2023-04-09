@@ -31,8 +31,8 @@ export class TopBarComponent implements OnInit {
     return this.accountService.tokenValue != null;
   }
 
-  public getUserName(): string | undefined {
-    return this.accountService.tokenValue;
+  public getUserName(): string {
+    return this.accountService.tokenSubject;
   }
 
   public logOut(): void {

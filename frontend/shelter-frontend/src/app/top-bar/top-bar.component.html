@@ -31,9 +31,9 @@
   </button>
 
   <ng-template #elseBlock>
-    <p>Hello, {{getUserName()}}!</p>
-    <button (click)="logOut()" mat-raised-button routerLink="../home"
-            routerLinkActive="active">
+    <span class="username">Hello, {{getUserName()}}!</span>
+    <button (click)="logOut()" class="logout_btn"
+            mat-raised-button routerLink="../home">
       Log out
     </button>
   </ng-template>

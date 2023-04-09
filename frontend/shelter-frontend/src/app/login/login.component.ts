@@ -45,9 +45,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // reset alerts on submit
     this.alertService.clear();
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
@@ -67,7 +65,8 @@ export class LoginComponent implements OnInit {
         },
         error: error => {
           this.handleError(error);
-          this.alertService.error(error.error.detail);
+          // this.alertService.error(error.error.detail);
+          this.alertService.error("Username or password fields are invalid.");
           this.loading = false;
         }
       });
