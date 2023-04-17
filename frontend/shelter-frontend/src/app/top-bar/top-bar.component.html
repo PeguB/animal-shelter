@@ -11,7 +11,7 @@
     <mat-icon class="icon-display">home</mat-icon>
     Home
   </button>
-  <button (click)="selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)" mat-button routerLink=""
+  <button (click)="selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)" mat-button routerLink="../pets"
           routerLinkActive="active">
     <mat-icon class="icon-display">pets</mat-icon>
     Pets
@@ -24,7 +24,8 @@
   </button>
   <span class="spacer"></span>
   <button (click)="selectNavBarTab(4)" *ngIf="!isLoggedIn(); else elseBlock" [class.mat-active]="isTabSelected(4)"
-          mat-raised-button routerLink="../login"
+          class="auth-buttons" mat-raised-button
+          routerLink="../login"
           routerLinkActive="active">
     <mat-icon class="icon-display">perm_identity</mat-icon>
     Log in
@@ -33,7 +34,8 @@
   <ng-template #elseBlock>
     <span class="username">Hello, {{getUserName()}}!</span>
     <button (click)="logOut()" class="logout_btn"
-            mat-raised-button routerLink="../home">
+            class="auth-buttons" mat-raised-button
+            routerLink="../home">
       Log out
     </button>
   </ng-template>
