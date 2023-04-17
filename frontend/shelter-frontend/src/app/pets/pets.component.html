@@ -1,0 +1,20 @@
+<div class="main-container">
+  <div class="row">
+    <button (click)="selectButton(1)" [class.mat-active]="isButtonSelected(1)" mat-fab routerLink="../pets"
+            routerLinkActive="active">
+      All
+    </button>
+    <button (click)="selectButton(2)" [class.mat-active]="isButtonSelected(2)" mat-fab routerLink="../pets"
+            routerLinkActive="active">
+      Doggies
+    </button>
+    <button (click)="selectButton(3)" [class.mat-active]="isButtonSelected(3)" mat-fab routerLink="../pets"
+            routerLinkActive="active">
+      Kitties
+    </button>
+
+    <input placeholder="Search by name..." type="text">
+    <mat-icon class="icon-display">search</mat-icon>
+  </div>
+
+</div>

@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {AppComponent} from "./app.component";
+import {PetsComponent} from "./pets/pets.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'register',
     title: 'Lucky Paws Rescue - Register',
     component: RegisterComponent
+  },
+  {
+    path: 'pets',
+    title: 'Lucky Paws Rescue - Pets',
+    component: PetsComponent
   },
   {
     path: '',
