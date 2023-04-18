@@ -10,6 +10,7 @@
   font-weight: 600;
   font-size: 1.3em;
   position: fixed;
+  z-index: 1;
 }
 
 .toolbar img {
@@ -20,21 +21,29 @@
   flex: 1;
 }
 
-button{
+button {
   margin-left: 2%;
   margin-right: 2%;
   font-size: 1.1em;
 }
 
-span{
+span {
   font-size: 1.2em;
 }
 
-.mat-active{
+.active {
   color: #FFE082;
   text-decoration: underline;
 }
 
+.logout_btn:hover {
+  color: #FFE082;
+  text-decoration: underline;
+}
+
+.username {
+  font-size: 1em;
+}
 
 
 

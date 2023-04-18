@@ -19,3 +19,8 @@ h6 {
 p {
   margin: 0;
 }
+
+.content{
+  padding-top: 60px;
+  position: relative;
+}

@@ -1,0 +1,50 @@
+.card {
+  margin-top: 60px;
+  margin-left: 20%;
+  margin-right: 20%;
+  border: 5px solid #5E35B1;
+  outline: 10px solid white;
+}
+
+.right-column {
+  border-left: 5px solid #5E35B1;
+  padding-left: 0;
+}
+
+.sign-up-btn {
+  background-color: #FFE082;
+  width: 100%;
+  margin-top: 8%;
+  margin-bottom: 5%;
+}
+
+input:focus {
+  outline: 4px solid #FFE082;
+}
+
+.form-group {
+  margin-top: 5%;
+  margin-bottom: 8%;
+}
+
+.card-header {
+  font-size: 2em;
+  text-align: center;
+  background-color: #5E35B1;
+  color: white;
+  height: 10%;
+  margin-bottom: 0;
+}
+
+.form-text {
+  font-size: 1.4em;
+  margin-bottom: 3%;
+  font-weight: 600;
+}
+
+.col-md-5 {
+  padding-right: 0;
+}
+
+
+
