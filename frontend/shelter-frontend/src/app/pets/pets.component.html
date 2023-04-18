@@ -6,12 +6,12 @@
       All
     </button>
     <button (click)="selectButton(2)" [class.mat-active]="isButtonSelected(2)" color="primary" extended mat-fab
-            routerLink="../pets"
+            routerLink=""
             routerLinkActive="active">
       Doggies
     </button>
     <button (click)="selectButton(3)" [class.mat-active]="isButtonSelected(3)" color="primary" extended mat-fab
-            routerLink="../pets"
+            routerLink=""
             routerLinkActive="active">
       Kitties
     </button>
@@ -20,6 +20,9 @@
       <input matInput/>
       <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
+  </div>
+  <div class="row">
+    <app-pet-card></app-pet-card>
   </div>
 
 </div>

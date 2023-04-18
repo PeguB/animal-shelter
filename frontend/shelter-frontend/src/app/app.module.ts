@@ -16,6 +16,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
 import {PetsComponent} from './pets/pets.component';
 import {MatInputModule} from "@angular/material/input";
+import {PetCardComponent} from './pet-card/pet-card.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {MatInputModule} from "@angular/material/input";
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    PetsComponent
+    PetsComponent,
+    PetCardComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
