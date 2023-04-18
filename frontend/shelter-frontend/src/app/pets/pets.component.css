@@ -1,8 +1,5 @@
 .main-container {
-  background-color: rgba(94, 53, 177, 0.6);
   margin: 3% 4% 2% 4%;
-  border-radius: 10px;
-  outline: 5px solid white;
   height: 100vh;
 }
 
@@ -12,28 +9,23 @@
 
 .row button {
   width: 15%;
+  height: 48px;
+  min-height: 48px;
   border-radius: 10px;
   margin: 1% 2% 2% 1%;
   font-size: 1.5em;
-  background-color: rgba(255, 224, 130, 1);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: #7E57C2;
 }
 
 .row button:active {
   text-decoration: underline;
-  background-color: black;
+  background-color: #FFE082;
 }
 
-input {
-  width: 20%;
-  margin: 1.5% 0 2% 20%;
-  border-radius: 10px;
-}
-
-input:focus {
-  outline: 4px solid #FFE082;
-}
-
-.icon-display {
-  margin: 2% 0 2% 0;
-  transform: scale(1.5);
+.search-input {
+  margin: 1.5% 0 2.5% 20%;
+  width: 25%;
 }

@@ -14,7 +14,8 @@ import {RegisterComponent} from './register/register.component';
 import {AlertComponent} from './alert/alert.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
-import { PetsComponent } from './pets/pets.component';
+import {PetsComponent} from './pets/pets.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PetsComponent } from './pets/pets.component';
     MatGridListModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    HttpClientModule
+    MatInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
