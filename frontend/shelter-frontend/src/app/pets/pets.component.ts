@@ -7,10 +7,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PetsComponent implements OnInit {
 
-  private buttonNumber: number;
+  private buttonNumber: number = 1;
 
   constructor() {
     this.buttonNumber = 1;
+    console.log("Cons" + this.buttonNumber);
   }
 
   ngOnInit(): void {
@@ -18,10 +19,13 @@ export class PetsComponent implements OnInit {
 
   public selectButton(currentButton: number) {
     this.buttonNumber = currentButton;
+    console.log(this.buttonNumber);
   }
 
-  public isButtonSelected(currentTab: number): boolean {
-    return this.buttonNumber === currentTab;
+  public isButtonSelected(currentButton: number): boolean {
+    console.log("Is button selected: this si current " + this.buttonNumber, currentButton);
+    return this.buttonNumber === currentButton || this.buttonNumber === 0 && currentButton === 1;
+    ;
   }
 
 }
