@@ -6,6 +6,11 @@
 .header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+  transition: transform 0.2s ease-in-out;
+}
+
+.header-image:hover {
+  transform: scale(1.5);
 }
 
 button {
@@ -22,4 +27,10 @@ button {
 
 .row {
   word-wrap: break-word;
+}
+
+.icon-svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
 }
