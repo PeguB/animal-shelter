@@ -25,17 +25,14 @@
     </button>
     <mat-form-field class="search-input">
       <mat-label>Search animals by name</mat-label>
-      <input matInput/>
+      <input #txtVal (input)="searchAnimalsByName(txtVal.value)" matInput/>
       <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
   </div>
   <div class="row" id="pet-cards-container">
-    <app-pet-card></app-pet-card>
-    <app-pet-card></app-pet-card>
-    <app-pet-card></app-pet-card>
-    <app-pet-card></app-pet-card>
-    <app-pet-card></app-pet-card>
-    <app-pet-card></app-pet-card>
+    <app-pet-card *ngFor="let animal of filteredAnimals" [age]="animal.age"
+                  [description]="animal.description" [photoIconPath]="animal.photoIconPath" [photoPath]="animal.photoIconPath"
+                  [subtitle]="animal.sex" [title]="animal.name" [weight]="animal.weight"></app-pet-card>
   </div>
 
 </div>
