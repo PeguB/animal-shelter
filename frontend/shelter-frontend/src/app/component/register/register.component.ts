@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AccountService} from "../_services/account.service";
-import {AlertService} from "../_services/alert.service";
-import {User} from "../_models";
+import {AccountService} from "../../_services/account.service";
+import {AlertService} from "../../_services/alert.service";
+import {User} from "../../_models";
 import {first, throwError} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 

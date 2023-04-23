@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
-import {AccountService} from "../_services/account.service";
-import {AlertService} from "../_services/alert.service";
+import {AccountService} from "../../_services/account.service";
+import {AlertService} from "../../_services/alert.service";
 import {first, throwError} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
-import {UserCredentials} from "../_models/user-credentials";
+import {UserCredentials} from "../../_models/user-credentials";
 
 @Component({
     selector: 'app-login',

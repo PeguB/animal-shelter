@@ -1,0 +1,47 @@
+.pet-card {
+  max-width: 100%;
+  width: 100%;
+  outline: 3px solid #7E57C2;
+  margin-bottom: 10%;
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  transition: transform 0.2s ease-in-out;
+}
+
+.header-image:hover {
+  transform: scale(1.5);
+}
+
+button {
+  width: 80%;
+  height: 30px;
+  min-height: 30px;
+  border-radius: 10px;
+  margin: 1% 0 1% 8%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: #7E57C2;
+}
+
+.row {
+  word-wrap: break-word;
+}
+
+.icon-svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+}
+
+mat-card-content {
+  margin: 0;
+}
+
+mat-card-image {
+  width: 457px;
+  height: 360px;
+}
