@@ -27,7 +27,7 @@ export class AccountService {
   }
 
   login(user: UserCredentials) {
-    return this.http.post(`http://localhost:8081/v1/auth/authenticate`, user)
+    return this.http.post(`http://localhost:8080/v1/auth/authenticate`, user)
       .pipe(map(tokenValue => {
         localStorage.setItem('token', JSON.stringify(tokenValue));
       }))
@@ -39,7 +39,7 @@ export class AccountService {
   }
 
   register(user: User) {
-    return this.http.post(`http://localhost:8081/v1/auth/register`, user);
+    return this.http.post(`http://localhost:8080/v1/auth/register`, user);
   }
 
   private getDecodedAccessToken(token: string): any {
