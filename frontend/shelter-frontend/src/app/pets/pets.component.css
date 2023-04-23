@@ -36,3 +36,11 @@
   fill: white;
 }
 
+#pet-cards-container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  row-gap: 3%;
+  column-gap: 5%;
+}
+
