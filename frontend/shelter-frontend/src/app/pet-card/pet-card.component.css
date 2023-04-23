@@ -1,6 +1,8 @@
 .pet-card {
-  max-width: 30%;
+  max-width: 100%;
+  width: 100%;
   outline: 3px solid #7E57C2;
+  margin-bottom: 10%;
 }
 
 .header-image {
@@ -33,4 +35,13 @@ button {
   width: 1em;
   height: 1em;
   vertical-align: -.125em;
+}
+
+mat-card-content {
+  margin: 0;
+}
+
+mat-card-image {
+  width: 457px;
+  height: 360px;
 }
