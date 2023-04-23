@@ -28,6 +28,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/v1/auth/**")
                 .permitAll()
+                .requestMatchers("/animal/**")
+                .permitAll()
                 .requestMatchers("/v1/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()

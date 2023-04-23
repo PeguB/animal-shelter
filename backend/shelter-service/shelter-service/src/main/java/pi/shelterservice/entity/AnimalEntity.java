@@ -16,10 +16,13 @@ public class AnimalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String animal_name;
+    private String animalName;
     private Integer age;
     private Float weight;
-    private String sex;
+    @Enumerated(EnumType.STRING)
+    private AnimalSex sex;
     @Enumerated(EnumType.STRING)
     private AnimalType animalType;
+    private String description;
+    private Boolean adoptionStatus;
 }
