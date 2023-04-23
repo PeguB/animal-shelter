@@ -1,7 +1,5 @@
 .card {
-  margin-top: 60px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin: 60px 20% 5%;
   border: 5px solid #5E35B1;
   outline: 10px solid white;
 }

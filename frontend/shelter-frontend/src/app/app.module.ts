@@ -4,19 +4,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TopBarComponent} from './top-bar/top-bar.component';
+import {TopBarComponent} from './component/top-bar/top-bar.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './component/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatGridListModule} from "@angular/material/grid-list";
-import {RegisterComponent} from './register/register.component';
-import {AlertComponent} from './alert/alert.component';
+import {RegisterComponent} from './component/register/register.component';
+import {AlertComponent} from './component/alert/alert.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {HttpClientModule} from "@angular/common/http";
-import {PetsComponent} from './pets/pets.component';
+import {PetsComponent} from './pages/petsPage/pets.component';
 import {MatInputModule} from "@angular/material/input";
-import {PetCardComponent} from './pet-card/pet-card.component';
+import {PetCardComponent} from './component/pet-card/pet-card.component';
 import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
