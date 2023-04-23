@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
+import {LoginComponent} from "./component/login/login.component";
+import {RegisterComponent} from "./component/register/register.component";
 import {AppComponent} from "./app.component";
+import {PetsComponent} from "./pages/petsPage/pets.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'register',
     title: 'Lucky Paws Rescue - Register',
     component: RegisterComponent
+  },
+  {
+    path: 'pets',
+    title: 'Lucky Paws Rescue - Pets',
+    component: PetsComponent
   },
   {
     path: '',

@@ -36,13 +36,17 @@ span {
   text-decoration: underline;
 }
 
-.logout_btn:hover {
+#logout_btn:hover {
   color: #FFE082;
   text-decoration: underline;
 }
 
 .username {
   font-size: 1em;
+}
+
+.auth-buttons {
+  margin-right: 4%;
 }
 
 
