@@ -25,7 +25,6 @@ export class PetsComponent implements OnInit {
   public isButtonSelected(currentButton: number): boolean {
     console.log("Is button selected: this si current " + this.buttonNumber, currentButton);
     return this.buttonNumber === currentButton || this.buttonNumber === 0 && currentButton === 1;
-    ;
   }
 
 }
