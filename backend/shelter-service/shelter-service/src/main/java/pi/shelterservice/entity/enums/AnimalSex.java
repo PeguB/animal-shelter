@@ -1,4 +1,4 @@
-package pi.shelterservice.entity;
+package pi.shelterservice.entity.enums;
 
 public enum AnimalSex {
     MALE,

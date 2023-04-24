@@ -1,5 +1,6 @@
 package pi.shelterservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,6 @@ public class AnimalDTO{
         private Integer weight;
         private String animalType;
         private String description;
-        private Boolean adaptionStatus;
+        private String adoptionStatus;
         private String sex;
 }

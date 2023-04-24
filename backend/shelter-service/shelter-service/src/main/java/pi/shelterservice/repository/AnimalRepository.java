@@ -7,8 +7,10 @@ import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.model.AnimalDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AnimalRepository extends JpaRepository<AnimalEntity,Integer> {
-
+    boolean existsByAnimalName(String name);
+    void deleteByAnimalName(String name);
 }

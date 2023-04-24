@@ -6,7 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pi.shelterservice.entity.Role;
+import pi.shelterservice.entity.enums.Role;
 import pi.shelterservice.entity.UserEntity;
 import pi.shelterservice.error.EmailAlreadyExist;
 import pi.shelterservice.error.PhoneNumberAlreadyExist;

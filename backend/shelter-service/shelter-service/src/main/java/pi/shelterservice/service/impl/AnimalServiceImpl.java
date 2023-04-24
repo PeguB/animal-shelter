@@ -1,11 +1,11 @@
 package pi.shelterservice.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import pi.shelterservice.entity.AnimalEntity;
+import pi.shelterservice.error.AnimalNameAlreadyExist;
 import pi.shelterservice.model.AnimalDTO;
-import pi.shelterservice.model.converter.MapStructMapper;
 import pi.shelterservice.repository.AnimalRepository;
 import pi.shelterservice.service.AnimalService;
 
@@ -15,18 +15,20 @@ import java.util.List;
 public class AnimalServiceImpl implements AnimalService {
 
     private final AnimalRepository animalRepository;
-    private final MapStructMapper mapStructMapper;
-
-    public AnimalServiceImpl(AnimalRepository animalRepository, MapStructMapper mapStructMapper){
+    private final ObjectMapper objectMapper;
+    public AnimalServiceImpl(AnimalRepository animalRepository, ObjectMapper objectMapper){
         this.animalRepository = animalRepository;
-        this.mapStructMapper = mapStructMapper;
+        this.objectMapper = objectMapper;
     }
 
     public List<AnimalDTO> findAllAnimals(){
-        return mapStructMapper.animalEntityListToAnimalDTOList(animalRepository.findAll());
+        return objectMapper.convertValue(animalRepository.findAll(), new TypeReference<List<AnimalDTO>>(){});
     }
     public AnimalDTO save(AnimalDTO animalDTO){
-      AnimalEntity animalEntity = mapStructMapper.animalDtoToAnimalEntity(animalDTO);
-      return mapStructMapper.animalEntityToAnimalDTO(animalRepository.save(animalEntity));
+        if(animalRepository.existsByAnimalName(animalDTO.getAnimalName())){
+            throw new AnimalNameAlreadyExist(animalDTO.getAnimalName());
+        }
+      AnimalEntity animalEntity = objectMapper.convertValue(animalDTO, AnimalEntity.class);
+      return objectMapper.convertValue(animalRepository.save(animalEntity), AnimalDTO.class);
     }
 }
