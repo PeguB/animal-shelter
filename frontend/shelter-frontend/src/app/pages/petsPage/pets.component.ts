@@ -9,9 +9,11 @@ import {Animal} from "../../_models/animal";
 
 export class PetsComponent implements OnInit {
   public filteredAnimals: Animal[] | undefined;
+  public searchFilteredAnimals: Animal[] | undefined;
+  public typeFilteredAnimals: Animal[] | undefined;
   public ANIMALS: Animal[] = [
     {
-      name: 'Cara',
+      name: 'Cara-Dog',
       age: 11,
       weight: 5.2,
       sex: 'female',
@@ -20,7 +22,7 @@ export class PetsComponent implements OnInit {
       type: 'dog',
     },
     {
-      name: 'Lucky',
+      name: 'Lucky-Cat',
       age: 10,
       weight: 5.2,
       sex: 'female',
@@ -30,7 +32,7 @@ export class PetsComponent implements OnInit {
       type: 'cat'
     },
     {
-      name: 'Rhea',
+      name: 'Rhea-Dog',
       age: 10,
       weight: 5.2,
       sex: 'female',
@@ -38,7 +40,7 @@ export class PetsComponent implements OnInit {
       type: 'dog'
     },
     {
-      name: 'Simba',
+      name: 'Simba-Cat',
       age: 10,
       weight: 5.2,
       sex: 'female',
@@ -46,7 +48,7 @@ export class PetsComponent implements OnInit {
       type: 'cat'
     },
     {
-      name: 'Ray',
+      name: 'Ray-Dog',
       age: 10,
       weight: 5.2,
       sex: 'female',
@@ -62,6 +64,9 @@ export class PetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredAnimals = this.ANIMALS;
+    this.searchFilteredAnimals = this.ANIMALS;
+    this.typeFilteredAnimals = this.ANIMALS;
+    this.buttonNumber = 1;
   }
 
   public selectButton(currentButton: number) {
@@ -72,7 +77,41 @@ export class PetsComponent implements OnInit {
     return this.buttonNumber === currentButton || this.buttonNumber === 0 && currentButton === 1;
   }
 
-  public searchAnimalsByName(name: string): void {
-    this.filteredAnimals = this.ANIMALS.filter(animal => animal.name?.toLowerCase().includes(name.toLowerCase()));
+  public filterAnimalsBySearchName(name: string): void {
+    this.searchFilteredAnimals = this.ANIMALS;
+    if (name) {
+      this.searchFilteredAnimals = this.ANIMALS.filter(animal => animal.name?.toLowerCase().includes(name.toLowerCase()));
+    }
+    console.log(this.searchFilteredAnimals);
+    this.mergeFilters();
+
+    console.log(this.isButtonSelected(1));
+    console.log(this.isButtonSelected(2));
+    console.log(this.isButtonSelected(3));
   }
+
+  public filterAnimalsByType(type?: string): void {
+    this.typeFilteredAnimals = this.ANIMALS;
+    switch (type) {
+      case 'all' :
+        this.selectButton(1);
+        break;
+      case 'dog' :
+        this.selectButton(2);
+        break;
+      case 'cat' :
+        this.selectButton(3);
+        break;
+    }
+    if (type && type !== 'all') {
+      this.typeFilteredAnimals = this.ANIMALS.filter(animal => animal.type?.toLowerCase().includes(type.toLowerCase()));
+    }
+    console.log(this.typeFilteredAnimals);
+    this.mergeFilters();
+  }
+
+  private mergeFilters(): void {
+    this.filteredAnimals = this.searchFilteredAnimals?.filter(animal => this.typeFilteredAnimals?.includes(animal));
+  }
+
 }
