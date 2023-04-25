@@ -1,11 +1,11 @@
 package pi.shelterservice.service;
 
-import org.springframework.stereotype.Service;
-import pi.shelterservice.entity.AnimalEntity;
+import pi.shelterservice.model.AnimalDTO;
 
 import java.util.List;
 
 public interface AnimalService {
-     List<AnimalEntity> findAllAnimals();
-    void save(AnimalEntity entity);
+    List<AnimalDTO> findAllAnimals();
+
+    AnimalDTO save(AnimalDTO animalDTO);
 }

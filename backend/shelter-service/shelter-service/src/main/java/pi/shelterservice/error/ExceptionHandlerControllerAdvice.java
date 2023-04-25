@@ -1,5 +1,6 @@
 package pi.shelterservice.error;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,15 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
                 .build();
     }
 
-    @ExceptionHandler(value = ConstraintViolationException.class)
+    @ExceptionHandler(value = {ConstraintViolationException.class, InvalidFormatException.class})
     public ErrorResponse handleBadRequestForIncorrectFormat(RuntimeException ex, WebRequest request){
         return ErrorResponse.create(ex,HttpStatus.BAD_REQUEST,"Incorect format");
     }
 
+    @ExceptionHandler(value = {AnimalNameAlreadyExist.class})
+    public ErrorResponse handleAnimalAlreadyExist(Exception ex, WebRequest request){
+        return ErrorResponse.builder(ex,HttpStatus.CONFLICT,"")
+                .detail(ex.getMessage())
+                .build();
+    }
 }

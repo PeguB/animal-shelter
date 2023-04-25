@@ -1,6 +1,5 @@
 package pi.shelterservice.config;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pi.shelterservice.entity.Role;
 import pi.shelterservice.entity.UserEntity;
+import pi.shelterservice.entity.enums.Role;
 import pi.shelterservice.repository.UserRepository;
 
 @Configuration
@@ -22,9 +21,10 @@ public class ApplicationConfiguration {
     private final UserRepository userRepository;
 
     @Autowired
-    public ApplicationConfiguration(UserRepository userRepository){
+    public ApplicationConfiguration(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByUsername(username)
@@ -38,6 +38,7 @@ public class ApplicationConfiguration {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
