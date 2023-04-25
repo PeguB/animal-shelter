@@ -1,10 +1,10 @@
 export class Animal {
-  name ?: string;
+  animalName ?: string;
   age ?: number;
   weight ?: number;
   sex ?: string;
   description ?: string;
-  type ?: string;
+  animalType ?: string;
   adoptionStatus ?: boolean;
   photoPath ?: string;
   photoIconPath ?: string;
