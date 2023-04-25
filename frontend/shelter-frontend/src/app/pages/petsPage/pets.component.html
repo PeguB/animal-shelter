@@ -33,8 +33,7 @@
   <div class="row" id="pet-cards-container">
     <app-pet-card *ngFor="let animal of filteredAnimals" [age]="animal.age"
                   [description]="animal.description" [photoIconPath]="animal.photoIconPath"
-                  [photoPath]="animal.photoIconPath"
+                  [photoPath]="animal.photoPath"
                   [subtitle]="animal.sex" [title]="animal.name" [weight]="animal.weight"></app-pet-card>
   </div>
-
 </div>

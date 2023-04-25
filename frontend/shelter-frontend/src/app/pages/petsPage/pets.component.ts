@@ -38,6 +38,8 @@ export class PetsComponent implements OnInit {
       weight: 5,
       sex: 'female',
       description: 'description goes here',
+      photoPath: 'https://assets.elanco.com/8e0bf1c2-1ae4-001f-9257-f2be3c683fb1/ac235c31-8953-4e7e-a582-2d5fa92d60d6/ragdoll_cat_01401.jpg',
+      photoIconPath: 'https://www.pumpkin.care/wp-content/uploads/2021/01/Ragdoll-Hero.jpg',
       type: 'cat'
     },
     {
@@ -46,6 +48,8 @@ export class PetsComponent implements OnInit {
       weight: 16,
       sex: 'female',
       description: 'description goes here',
+      photoPath: 'https://onecms-res.cloudinary.com/image/upload/s--Lh6sY8BL--/c_fill,g_auto,h_468,w_830/f_auto,q_auto/v1/mediacorp/cna/image/2022/10/20/istock-1319774380.jpg?itok=QxcnSH_H',
+      photoIconPath: 'https://fox56news.com/wp-content/uploads/sites/24/2022/07/Cat.jpg',
       type: 'cat'
     },
     {
@@ -54,6 +58,8 @@ export class PetsComponent implements OnInit {
       weight: 25,
       sex: 'female',
       description: 'description goes here',
+      photoPath: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Cat_August_2010-4.jpg',
+      photoIconPath: 'https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg',
       type: 'cat'
     }
   ];

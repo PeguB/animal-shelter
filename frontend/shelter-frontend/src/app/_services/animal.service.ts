@@ -11,6 +11,6 @@ export class AnimalService {
   }
 
   getAnimals(): Observable<any> {
-    return this.http.get(`http://localhost:8081/v1/auth/authenticate`, {responseType: 'json'})
+    return this.http.get(`http://localhost:8081/v1/animals`, {responseType: 'json'})
   }
 }
