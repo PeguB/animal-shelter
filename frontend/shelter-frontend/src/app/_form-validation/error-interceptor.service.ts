@@ -14,12 +14,9 @@ export class ErrorInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
       if ([401, 403].includes(err.status) && this.accountService.tokenValue) {
-        // auto logout if 401 or 403 response returned from api
         this.accountService.logout();
       }
-
       const error = (err && err.error && err.error.message) || err.statusText;
-      console.error('Eroare tampita' + err);
       return throwError(error);
     }))
   }

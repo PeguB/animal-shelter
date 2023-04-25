@@ -3,10 +3,10 @@
   width: 100%;
   outline: 3px solid #7E57C2;
   margin-bottom: 10%;
+  padding: 0;
 }
 
 .header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
   transition: transform 0.2s ease-in-out;
 }
@@ -41,7 +41,12 @@ mat-card-content {
   margin: 0;
 }
 
-mat-card-image {
-  width: 457px;
-  height: 360px;
+.with-padding {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+#adopt-button {
+  padding-bottom: 16px;
 }
