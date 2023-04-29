@@ -18,6 +18,9 @@ import {PetsComponent} from './pages/petsPage/pets.component';
 import {MatInputModule} from "@angular/material/input";
 import {PetCardComponent} from './component/pet-card/pet-card.component';
 import {MatCardModule} from "@angular/material/card";
+import {MyDialogComponent} from "./component/pet-card/dialogAnimation.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLoggedIn.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import {MatCardModule} from "@angular/material/card";
     RegisterComponent,
     AlertComponent,
     PetsComponent,
-    PetCardComponent
+    PetCardComponent,
+    MyDialogComponent,
+    MyDialogNotLoggedInComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,7 @@ import {MatCardModule} from "@angular/material/card";
     MatInputModule,
     HttpClientModule,
     MatCardModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

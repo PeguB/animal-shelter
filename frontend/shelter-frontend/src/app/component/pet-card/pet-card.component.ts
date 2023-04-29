@@ -1,4 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {MyDialogComponent} from "./dialogAnimation.component";
+import {ComponentType} from "@angular/cdk/portal";
+import {MyDialogNotLoggedInComponent} from "./dialogForNotLoggedIn.component";
 
 @Component({
   selector: 'app-pet-card',
@@ -15,10 +19,27 @@ export class PetCardComponent implements OnInit {
   @Input() weight: number | undefined;
   @Input() description: string | undefined;
 
-  constructor() {
-  }
 
   ngOnInit(): void {
   }
 
+  constructor(private dialog: MatDialog) {}
+
+  openDialog() {
+    if(localStorage.getItem('token')){
+      this.choseDialog(MyDialogComponent)
+    }else{
+      this.choseDialog(MyDialogNotLoggedInComponent)
+    }
+  }
+  private choseDialog(component: ComponentType<any>){
+    const dialogRef = this.dialog.open(component, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+    });
+  }
 }
