@@ -22,10 +22,6 @@ export class PetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.animalService.getAnimals().subscribe(animals=>{
-      animals.forEach(function (animal){
-        animal.photoIconPath = "https://upload.wikimedia.org/wikipedia/commons/1/15/Cat_August_2010-4.jpg"
-        animal.photoPath = "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg"
-      })
       this.ANIMALS = animals
       this.searchFilteredAnimals = this.ANIMALS;
       this.typeFilteredAnimals = this.ANIMALS;
@@ -46,12 +42,10 @@ export class PetsComponent implements OnInit {
   public filterAnimalsBySearchName(name: string): void {
 
     this.searchFilteredAnimals = this.ANIMALS;
-    console.log(this.ANIMALS);
     if (name) {
       this.searchFilteredAnimals = this.ANIMALS.filter(animal => {
         return animal.animalName?.toLowerCase().includes(name.toLowerCase())
       });
-      //console.log(this.searchFilteredAnimals)
     }
     this.mergeFilters();
 

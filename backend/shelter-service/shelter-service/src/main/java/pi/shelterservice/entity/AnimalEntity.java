@@ -39,4 +39,8 @@ public class AnimalEntity {
 
     @Enumerated(EnumType.STRING)
     private AdaptionStatus adoptionStatus;
+
+    private String photoPath;
+
+    private String photoIconPath;
 }

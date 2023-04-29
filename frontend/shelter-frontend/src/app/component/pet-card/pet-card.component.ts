@@ -34,12 +34,8 @@ export class PetCardComponent implements OnInit {
   }
   private choseDialog(component: ComponentType<any>){
     const dialogRef = this.dialog.open(component, {
-      width: '250px',
+      width: '300px',
       data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
     });
   }
 }
