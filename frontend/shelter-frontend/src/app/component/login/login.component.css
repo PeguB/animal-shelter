@@ -40,10 +40,18 @@ input:focus {
   font-size: 1.4em;
   margin-bottom: 3%;
   font-weight: 600;
+  /*color: #5E35B1;*/
 }
 
 .col-md-5 {
   padding-right: 0;
 }
 
+.fontawesome {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+  margin-right: 10px;
+  fill: #5E35B1;
+}
 
