@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/animal")
+@CrossOrigin
 public class AnimalController {
 
     private final AnimalService animalService;

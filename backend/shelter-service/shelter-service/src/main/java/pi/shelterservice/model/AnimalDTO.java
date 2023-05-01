@@ -16,4 +16,6 @@ public class AnimalDTO{
         private String description;
         private String adoptionStatus;
         private String sex;
+        private String photoPath;
+        private String photoIconPath;
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import pi.shelterservice.entity.enums.AdaptionStatus;
 import pi.shelterservice.entity.enums.AnimalSex;
 import pi.shelterservice.entity.enums.AnimalType;
@@ -17,8 +18,11 @@ import pi.shelterservice.entity.enums.AnimalType;
 @Table(name = "animals")
 public class AnimalEntity {
 
-    @Column(unique = true)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(unique = true)
     private String animalName;
 
     private Integer age;
@@ -35,4 +39,8 @@ public class AnimalEntity {
 
     @Enumerated(EnumType.STRING)
     private AdaptionStatus adoptionStatus;
+
+    private String photoPath;
+
+    private String photoIconPath;
 }
