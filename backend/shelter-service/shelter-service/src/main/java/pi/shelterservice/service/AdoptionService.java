@@ -1,6 +1,8 @@
 package pi.shelterservice.service;
 
+import pi.shelterservice.model.AdoptionDTO;
+
 public interface AdoptionService {
 
-    void sendAdoption(String userName, String animalName);
+    AdoptionDTO sendAdoption(AdoptionDTO adoptionDTO);
 }
