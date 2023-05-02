@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import pi.shelterservice.entity.AdoptionEntity;
 import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.UserEntity;
+import pi.shelterservice.error.AnimalNameDoNotExistException;
+import pi.shelterservice.error.LimitReachedForAdoptionException;
+import pi.shelterservice.error.UsernameDoNotExistException;
 import pi.shelterservice.model.AdoptionDTO;
 import pi.shelterservice.repository.AdoptionRepository;
 import pi.shelterservice.repository.AnimalRepository;
@@ -33,14 +36,14 @@ public class AdoptionServiceImpl implements AdoptionService {
 
         Optional<UserEntity> user = userRepository.findByUsername(adoptionDTO.getUsername());
         if(user.isEmpty()){
-            throw new RuntimeException("Username doesn't exist");
+            throw new UsernameDoNotExistException(adoptionDTO.getUsername());
         }
         Optional<AnimalEntity> animalEntity = animalRepository.findByAnimalName(adoptionDTO.getAnimalName());
         if(animalEntity.isEmpty()){
-            throw new RuntimeException("Animal doesn't exist");
+            throw new AnimalNameDoNotExistException(adoptionDTO.getAnimalName());
         }
-        if(adoptionRepository.findByDateTime(adoptionDTO.getDateTime()).size() > 1){
-            throw new RuntimeException("To much adoptions for that day");
+        if(adoptionRepository.findByDateTime(adoptionDTO.getDateTime()).size() == 2){
+            throw new LimitReachedForAdoptionException(adoptionDTO.getDateTime());
         }
         AdoptionEntity adoptionEntity = AdoptionEntity.builder()
                 .dateTime(adoptionDTO.getDateTime())
