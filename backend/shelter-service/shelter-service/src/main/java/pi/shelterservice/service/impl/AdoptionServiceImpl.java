@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pi.shelterservice.entity.AdoptionEntity;
 import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.UserEntity;
+import pi.shelterservice.entity.enums.AdoptionStatus;
 import pi.shelterservice.error.AnimalNameDoNotExistException;
 import pi.shelterservice.error.LimitReachedForAdoptionException;
 import pi.shelterservice.error.UsernameDoNotExistException;
@@ -49,6 +50,7 @@ public class AdoptionServiceImpl implements AdoptionService {
                 .dateTime(adoptionDTO.getDateTime())
                 .id_user(user.get().getId())
                 .id_animal(animalEntity.get().getId())
+                .adoptionStatus(AdoptionStatus.PENDING)
                 .build();
         adoptionRepository.save(adoptionEntity);
        return adoptionDTO;

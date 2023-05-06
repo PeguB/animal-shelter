@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pi.shelterservice.entity.enums.AdoptionStatus;
 
 import java.time.LocalDate;
 
@@ -25,4 +26,7 @@ public class AdoptionEntity {
     private Integer id_animal;
 
     private LocalDate dateTime;
+
+    @Enumerated(EnumType.STRING)
+    private AdoptionStatus adoptionStatus;
 }

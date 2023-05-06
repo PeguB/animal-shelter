@@ -21,6 +21,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MyDialogComponent} from "./component/pet-card/dialogAnimation.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLoggedIn.component";
+import {ChoseDateDialogComponent} from "./component/pet-card/choseDateDialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLog
     PetsComponent,
     PetCardComponent,
     MyDialogComponent,
-    MyDialogNotLoggedInComponent
+    MyDialogNotLoggedInComponent,
+    ChoseDateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +53,10 @@ import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLog
     HttpClientModule,
     MatCardModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

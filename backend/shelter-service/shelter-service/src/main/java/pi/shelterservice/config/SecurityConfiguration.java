@@ -30,6 +30,8 @@ public class SecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/animal")
                 .permitAll()
+                .requestMatchers("/adoption/**")
+                .permitAll()
                 .requestMatchers("/animal/save").hasAuthority("ADMIN")
                 .requestMatchers("/v1/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
