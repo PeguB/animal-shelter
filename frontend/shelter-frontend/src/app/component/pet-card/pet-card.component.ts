@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {MyDialogComponent} from "./dialogAnimation.component";
+import {QuestionForAdoptionDialog} from "./dialogAnimation.component";
 import {ComponentType} from "@angular/cdk/portal";
 import {MyDialogNotLoggedInComponent} from "./dialogForNotLoggedIn.component";
 import {AccountService} from "../../_services/account.service";
@@ -29,21 +29,21 @@ export class PetCardComponent implements OnInit {
 
   }
 
-  openDialog(animalName: string, photoIconPath: string) {
+  openAdoptMeDialog(animalName: string, photoIconPath: string) {
     if(localStorage.getItem('token')){
-      this.choseDialog(MyDialogComponent,animalName, photoIconPath, this.accountService.tokenSubject)
+      this.choseDialogWithAdoptionData(QuestionForAdoptionDialog,animalName, photoIconPath, this.accountService.tokenSubject)
     }else{
-      this.choseSimpleDialog(MyDialogNotLoggedInComponent)
+      this.choseDefaultDialog(MyDialogNotLoggedInComponent)
     }
   }
-  private choseDialog(component: ComponentType<any>,animalName: string, photoIconPath:string, username: string){
+  private choseDialogWithAdoptionData(component: ComponentType<any>,animalName: string, photoIconPath:string, username: string){
     const dialogRef = this.dialog.open(component, {
       width: '300px',
       data: {animalName,username, photoIconPath}
     });
   }
 
-  private choseSimpleDialog(component: ComponentType<any>){
+  private choseDefaultDialog(component: ComponentType<any>){
     const dialogRef = this.dialog.open(component, {
       width: '300px',
       data: {}

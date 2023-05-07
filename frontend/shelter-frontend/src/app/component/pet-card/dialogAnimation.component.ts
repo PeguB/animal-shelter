@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {ComponentType} from "@angular/cdk/portal";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {ChoseDateDialogComponent} from "./choseDateDialog";
@@ -16,17 +16,19 @@ import {ChoseDateDialogComponent} from "./choseDateDialog";
     </mat-dialog-actions>
   `,
 })
-export class MyDialogComponent {
+export class QuestionForAdoptionDialog {
 
-  constructor(private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private dialog: MatDialog,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
-  openDateDialog(){
-    this.choseSimpleDialog(ChoseDateDialogComponent)
+
+  openDateDialog() {
+    this.choseDialog(ChoseDateDialogComponent)
   }
-  private choseSimpleDialog(component: ComponentType<any>){
+
+  private choseDialog(component: ComponentType<any>) {
     let adoptionInformationTransfer = this.data;
-    console.log(this.data);
     const dialogRef = this.dialog.open(component, {
       width: '400px',
       data: adoptionInformationTransfer
