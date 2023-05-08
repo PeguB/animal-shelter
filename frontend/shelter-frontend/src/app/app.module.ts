@@ -21,6 +21,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MyDialogComponent} from "./component/pet-card/dialogAnimation.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLoggedIn.component";
+import {FooterComponent} from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLog
     PetsComponent,
     PetCardComponent,
     MyDialogComponent,
-    MyDialogNotLoggedInComponent
+    MyDialogNotLoggedInComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
