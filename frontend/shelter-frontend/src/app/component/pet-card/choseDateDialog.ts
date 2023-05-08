@@ -4,6 +4,7 @@ import {AdoptionService} from "../../_services/adoption.service";
 import {AdoptionRequest} from "../../_models/adoptionRequest";
 import {DatePipe} from "@angular/common";
 import {FormBuilder, Validators} from "@angular/forms";
+import {first, map} from "rxjs";
 
 @Component({
   selector: 'app-my-dialog',
@@ -74,8 +75,7 @@ export class ChoseDateDialogComponent {
       animalName: this.data.animalName,
       dateTime: this.datePipe.transform(this.adoptionForm.value.date, "yyyy-MM-dd")
     }
-    this.adoptionService.sendAdoption(adoptionRequest)
-      .subscribe();
+    this.adoptionService.sendAdoption(adoptionRequest).pipe(first()).subscribe()
     console.log(adoptionRequest);
   }
 }

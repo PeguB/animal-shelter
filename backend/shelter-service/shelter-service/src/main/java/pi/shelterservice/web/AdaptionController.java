@@ -9,7 +9,7 @@ import pi.shelterservice.service.AdoptionService;
 
 @RestController
 @RequestMapping(value = "/adoption")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AdaptionController {
 
     private final AdoptionService adoptionService;

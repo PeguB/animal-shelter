@@ -18,19 +18,18 @@ public class SecurityConfiguration {
 
     private final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf()
                 .disable()
                 .cors()
-                .disable()
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/v1/auth/**")
                 .permitAll()
                 .requestMatchers("/animal")
-                .permitAll()
-                .requestMatchers("/adoption/**")
                 .permitAll()
                 .requestMatchers("/animal/save").hasAuthority("ADMIN")
                 .requestMatchers("/v1/admin/**").hasAuthority("ADMIN")
@@ -46,4 +45,5 @@ public class SecurityConfiguration {
 
         return http.build();
     }
+
 }
