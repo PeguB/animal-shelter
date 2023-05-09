@@ -43,4 +43,9 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
                 .detail(ex.getMessage())
                 .build();
     }
+
+    @ExceptionHandler(value = {LimitReachedForAdoptionException.class,UsernameDoNotExistException.class,AnimalNameDoNotExistException.class})
+    public ErrorResponse handleBadRequestForIncorrectAdoption(RuntimeException ex, WebRequest request){
+        return ErrorResponse.create(ex,HttpStatus.BAD_REQUEST,ex.getMessage());
+    }
 }

@@ -18,10 +18,14 @@ import {PetsComponent} from './pages/petsPage/pets.component';
 import {MatInputModule} from "@angular/material/input";
 import {PetCardComponent} from './component/pet-card/pet-card.component';
 import {MatCardModule} from "@angular/material/card";
-import {MyDialogComponent} from "./component/pet-card/dialogAnimation.component";
+import {QuestionForAdoptionDialog} from "./component/pet-card/dialogAnimation.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLoggedIn.component";
 import {FooterComponent} from './component/footer/footer.component';
+import {ChoseDateDialogComponent} from "./component/pet-card/choseDateDialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -32,9 +36,11 @@ import {FooterComponent} from './component/footer/footer.component';
     AlertComponent,
     PetsComponent,
     PetCardComponent,
-    MyDialogComponent,
     MyDialogNotLoggedInComponent,
     FooterComponent,
+    QuestionForAdoptionDialog,
+    MyDialogNotLoggedInComponent,
+    ChoseDateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +56,10 @@ import {FooterComponent} from './component/footer/footer.component';
     HttpClientModule,
     MatCardModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

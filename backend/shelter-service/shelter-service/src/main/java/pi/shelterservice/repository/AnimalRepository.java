@@ -13,4 +13,5 @@ import java.util.Optional;
 public interface AnimalRepository extends JpaRepository<AnimalEntity,Integer> {
     boolean existsByAnimalName(String name);
     void deleteByAnimalName(String name);
+    Optional<AnimalEntity> findByAnimalName(String name);
 }
