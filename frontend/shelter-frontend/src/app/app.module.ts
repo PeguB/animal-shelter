@@ -26,6 +26,7 @@ import {ChoseDateDialogComponent} from "./component/pet-card/choseDateDialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
+import {HomeComponent} from './pages/homePage/home/home.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {DatePipe} from "@angular/common";
     FooterComponent,
     QuestionForAdoptionDialog,
     MyDialogNotLoggedInComponent,
-    ChoseDateDialogComponent
+    ChoseDateDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
