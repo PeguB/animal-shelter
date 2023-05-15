@@ -1,0 +1,16 @@
+.underline-text {
+  border-bottom: 2px solid #5E35B1;
+  font-size: 1em;
+}
+
+span, .fab {
+  font-size: 1.3em;
+}
+
+.link-icons {
+  margin-right: 0.5%;
+}
+
+img {
+  margin-bottom: 2%;
+}

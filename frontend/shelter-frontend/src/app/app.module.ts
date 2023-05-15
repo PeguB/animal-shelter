@@ -21,10 +21,12 @@ import {MatCardModule} from "@angular/material/card";
 import {QuestionForAdoptionDialog} from "./component/pet-card/dialogAnimation.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MyDialogNotLoggedInComponent} from "./component/pet-card/dialogForNotLoggedIn.component";
+import {FooterComponent} from './component/footer/footer.component';
 import {ChoseDateDialogComponent} from "./component/pet-card/choseDateDialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
+import {HomeComponent} from './pages/homePage/home/home.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,12 @@ import {DatePipe} from "@angular/common";
     AlertComponent,
     PetsComponent,
     PetCardComponent,
+    MyDialogNotLoggedInComponent,
+    FooterComponent,
     QuestionForAdoptionDialog,
     MyDialogNotLoggedInComponent,
-    ChoseDateDialogComponent
+    ChoseDateDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
