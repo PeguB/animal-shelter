@@ -4,7 +4,11 @@ import {AdoptionService} from "../../_services/adoption.service";
 import {AdoptionRequest} from "../../_models/adoptionRequest";
 import {DatePipe} from "@angular/common";
 import {FormBuilder, Validators} from "@angular/forms";
-import {first, map} from "rxjs";
+import {catchError, first, map, of, retry, switchMap} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
+import {TokenService} from "../../_services/token.service";
+import {RefreshTokenRequest} from "../../_models/refreshTokenRequest";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-dialog',
@@ -60,7 +64,9 @@ export class ChoseDateDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private adoptionService: AdoptionService,
               private datePipe: DatePipe,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder,
+              private tokenService: TokenService,
+              private router: Router) {
 
   }
 
@@ -75,7 +81,43 @@ export class ChoseDateDialogComponent {
       animalName: this.data.animalName,
       dateTime: this.datePipe.transform(this.adoptionForm.value.date, "yyyy-MM-dd")
     }
-    this.adoptionService.sendAdoption(adoptionRequest).pipe(first()).subscribe()
+
+    interface refreshResponse {
+      "refreshToken": string
+    }
+
+    this.adoptionService.sendAdoption(adoptionRequest).pipe(
+      retry(3),
+      catchError((error) => {
+        if (error.status === 403) {
+          console.log('First request error: Token expired. Initiating second request...');
+          let refreshToken: RefreshTokenRequest = {
+            username: this.data.username,
+            token: localStorage.getItem('token')!
+          };
+          return this.tokenService.getRefreshToken(refreshToken);
+        } else {
+          throw error;
+        }
+      }),
+      switchMap((refreshTokenResponse) => {
+        console.log('Second request completed successfully');
+        let responseJson = JSON.parse(refreshTokenResponse.toString())
+        console.log(responseJson)
+        localStorage.removeItem('refreshToken');
+        localStorage.setItem('refreshToken', responseJson.refreshToken)
+        return of(refreshTokenResponse);
+      })
+    ).subscribe(
+      (response) => {
+        // Handle the response from the first or second request
+        // ...
+      },
+      (error) => {
+        console.log(error);
+        // Handle errors from the first or second request
+      }
+    );
     console.log(adoptionRequest);
   }
 }

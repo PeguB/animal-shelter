@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AdoptionRequest} from "../_models/adoptionRequest";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,13 @@ export class AdoptionService {
 
   sendAdoption(body: AdoptionRequest): Observable<any> {
 
+    let refreshTkn = JSON.parse(localStorage.getItem('refreshToken')!);
+    console.log(refreshTkn)
 
-    let tokenValue = JSON.parse(localStorage.getItem('token')!).token
-    let headers = new HttpHeaders({'Authorization': 'Bearer ' + tokenValue});
+    let headers = new HttpHeaders({'Authorization': 'Bearer ' + refreshTkn});
     console.log(headers.get('Authorization'));
     const reqHeader = new HttpHeaders({
-      'Authorization': 'Bearer ' + tokenValue
+      'Authorization': 'Bearer ' + refreshTkn
     });
     return this.http.post<AdoptionRequest>(`http://localhost:8080/adoption/send`, body, { headers: reqHeader })
   }
