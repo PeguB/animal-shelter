@@ -12,14 +12,14 @@
 }
 
 .sign-in-btn {
-  background-color: #FFE082;
+  background-color: #E7D619;
   width: 100%;
   margin-top: 2%;
   margin-bottom: 8%;
 }
 
 input:focus {
-  outline: 4px solid #FFE082;
+  outline: 4px solid #E7D619;
 }
 
 .form-group {

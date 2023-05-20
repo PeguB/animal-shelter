@@ -10,14 +10,14 @@
 }
 
 .sign-up-btn {
-  background-color: #FFE082;
+  background-color: #E7D619;
   width: 100%;
   margin-top: 8%;
   margin-bottom: 5%;
 }
 
 input:focus {
-  outline: 4px solid #FFE082;
+  outline: 4px solid #E7D619;
 }
 
 .form-group {

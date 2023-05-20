@@ -1,1 +1,449 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <!-- Mobile Metas -->
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+  <!-- Site Metas -->
+  <meta content="" name="keywords"/>
+  <meta content="" name="description"/>
+  <meta content="" name="author"/>
+
+  <!-- bootstrap core css -->
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="hero_area ">
+  <!-- slider section -->
+  <section class="slider_section">
+    <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-5 offset-md-1">
+                <div class="detail-box">
+                  <h1>
+                    Lucky <br>
+                    <span>
+                        Paws Rescue
+                      </span>
+                  </h1>
+                  <p>
+                    Unlock a lifetime of love and compassion - discover your perfect companion at our adoption center,
+                    where hearts and homes meet.
+                  </p>
+                  <div class="btn-box">
+                    <a class="btn-1" href="../pets">
+                      Our Pets
+                    </a>
+                    <a class="btn-2" href="">
+                      About Us
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="img-box">
+                  <img alt="" src="assets/images/homePage/slider-img.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- end slider section -->
+</div>
+
+<!-- about section -->
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="detail-box">
+      <div class="heading_container">
+        <img alt="" src="assets/images/homePage/heading-img.png">
+        <h2>
+          About Us
+        </h2>
+      </div>
+      <p>
+        At Lucky Paws Rescue, we are dedicated to making a difference in the lives of our furry friends.
+        With a passionate team and a commitment to finding loving homes, we strive to create a brighter future for every
+        animal that comes our way.
+      </p>
+      <p [hidden]="!showFullContent">
+        Our ultimate joy comes from seeing the smiling faces of our happy customers who have found their perfect
+        companions,
+        forging lifelong bonds and bringing immeasurable joy to their lives.
+        Join our community of compassionate individuals and be a part of our mission to transform lives, one adoption at
+        a time.
+      </p>
+      <div *ngIf="showFullContent == false" class="btn-box">
+        <a (click)="expandContent()">
+            <span>
+              Read More
+            </span>
+          <img alt="" src="assets/images/homePage/link-arrow.png">
+        </a>
+      </div>
+      <div *ngIf="showFullContent == true" class="btn-box">
+        <a (click)="withdrawContent()">
+            <span>
+              Show less
+            </span>
+          <img alt="" src="assets/images/homePage/link-arrow.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end about section -->
+
+<!-- animal section -->
+
+<section class="animal_section layout_padding">
+  <div class="container">
+    <div class="animal_container">
+      <div class="box b1">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/dog.jpg">
+        </div>
+        <div class="detail-box">
+          <h5>
+            Our cute dogs
+          </h5>
+          <p>
+            Our lovable dogs are patiently waiting for their forever homes.
+            From playful pups to gentle seniors, each dog in our adoption center is a unique and faithful companion,
+            ready to fill your life with boundless love and loyalty. Whether you're looking for an energetic partner for
+            outdoor adventures or a snugly
+            friend for cozy nights, our dogs are eager to bring joy and happiness to your home.
+          </p>
+        </div>
+      </div>
+      <div class="box b2">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/cat.jpg">
+        </div>
+        <div class="detail-box">
+          <h5>
+            Our sweet cats
+          </h5>
+          <p>
+            Our adorable cats are eagerly awaiting their chance to find a loving family.
+            With their independent spirits and affectionate nature, our feline friends offer companionship and comfort
+            in equal measure.
+            If you're seeking a purring presence and a lifelong friend, our cats are ready to charm their way into your
+            heart and home.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end animal section -->
+
+<!-- pet section -->
+
+<section class="pet_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/pet-img.png">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-box">
+          <div class="heading_container">
+            <img alt="" src="assets/images/homePage/heading-img.png">
+            <h2>
+              Caring for your pets
+            </h2>
+          </div>
+          <p>
+            Caring for our pets is at the heart of everything we do. At our adoption center,
+            we provide a range of top-notch facilities to ensure the well-being and happiness of our animals.
+            Our open playground offers a safe and stimulating environment for them to socialize, exercise, and play.
+            Our dedicated and loving staff members are always there to look for them with affection, attention, and
+            care.
+            To ensure their health and medical needs are met, we have a skilled veterinarian who provides expert care
+            for our adopted animals.
+            With these exceptional facilities and a commitment to their welfare, we strive to give our beloved pets the
+            utmost comfort and attention they deserve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end pet section -->
+
+<!-- us section -->
+
+<section class="us_section layout_padding-bottom">
+  <div class="container">
+    <div class="heading_container">
+      <img alt="" src="assets/images/homePage/heading-img.png">
+      <h2>
+        Why Choose Us
+      </h2>
+    </div>
+    <div class="us_container">
+      <div class="box">
+        <div class="img1-box">
+          <img alt="" src="assets/images/homePage/pet1.png">
+        </div>
+        <div class="img2-box">
+          <img alt="" src="assets/images/homePage/omega.png">
+        </div>
+        <div class="detail-box">
+          <h6>
+            BEST NUTRITION
+          </h6>
+        </div>
+      </div>
+      <div class="box">
+        <div class="img1-box">
+          <img alt="" height="263" src="assets/images/homePage/pet3.png" width="250">
+        </div>
+        <div class="img2-box">
+          <img alt="" src="assets/images/homePage/dog.png">
+        </div>
+        <div class="detail-box">
+          <h6>
+            HEALTH STANDARDS
+          </h6>
+        </div>
+      </div>
+      <div class="box">
+        <div class="img1-box">
+          <img alt="" src="assets/images/homePage/pet2.png">
+        </div>
+        <div class="img2-box">
+          <img alt="" src="assets/images/homePage/shield.png">
+        </div>
+        <div class="detail-box">
+          <h6>
+            QUALITY & SAFE ENVIRONMENT
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end us section -->
+
+<!-- food section -->
+
+<section class="food_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <img alt="" src="assets/images/homePage/heading-img.png">
+      <h2>
+        Learn About The Adoption Process
+      </h2>
+      <p>
+        Lucky Paws Rescue helps you connect with your future pet through an efficient and quick adoption process, in
+        just 3 easy steps.
+      </p>
+    </div>
+    <div class="food_container">
+      <div class="box">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/f1.png">
+        </div>
+        <div class="detail-box">
+          <h3>
+            <span>Make an &nbsp;</span>account
+          </h3>
+        </div>
+      </div>
+      <div class="box">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/f1.png">
+        </div>
+        <div class="detail-box">
+          <h3>
+            <span>Choose your &nbsp;</span>friend
+          </h3>
+        </div>
+      </div>
+      <div class="box">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/f1.png">
+        </div>
+        <div class="detail-box">
+          <h3>
+            <span>Pick &nbsp;</span>a date
+          </h3>
+        </div>
+      </div>
+      <div class="box">
+        <div class="img-box">
+          <img alt="" src="assets/images/homePage/f2.png">
+        </div>
+        <div class="detail-box">
+          <h3>
+            <span>Let us &nbsp;</span>do the rest
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- end food section -->
+
+<!-- client section -->
+
+<section class="client_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <img alt="" src="assets/images/homePage/heading-img.png">
+      <h2>
+        What Our Customers Say
+      </h2>
+    </div>
+    <div class="carousel slide" data-ride="carousel" id="carouselExampleControls">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="box">
+            <div class="img-box">
+              <img alt="" src="assets/images/homePage/client.png">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Jack Mengo
+              </h4>
+              <p>
+                It is a long established fact that a reader will be distracted by the readable cIt is a long established
+                fact that a reader will be distracted by the readable c
+              </p>
+              <img alt="" src="assets/images/homePage/quote.png">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="box">
+            <div class="img-box">
+              <img alt="" src="assets/images/homePage/client.png">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Jack Mengo
+              </h4>
+              <p>
+                It is a long established fact that a reader will be distracted by the readable cIt is a long established
+                fact that a reader will be distracted by the readable c
+              </p>
+              <img alt="" src="assets/images/homePage/quote.png">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="box">
+            <div class="img-box">
+              <img alt="" src="assets/images/homePage/client.png">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Jack Mengo
+              </h4>
+              <p>
+                It is a long established fact that a reader will be distracted by the readable cIt is a long established
+                fact that a reader will be distracted by the readable c
+              </p>
+              <img alt="" src="assets/images/homePage/quote.png">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel_btn-box">
+        <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleControls" role="button">
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" data-slide="next" href="#carouselExampleControls" role="button">
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end client section -->
+
+<!-- contact section -->
+
+<section class="contact_section layout_padding-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 offset-md-1">
+        <div class="form_container">
+          <div class="heading_container">
+            <img alt="" src="assets/images/homePage/heading-img.png">
+            <h2>
+              Request A Call Back
+            </h2>
+            <p>
+              It is a long established fact that a reader will be distracted by the
+            </p>
+          </div>
+          <form action="">
+            <div>
+              <input placeholder="Full Name " type="text"/>
+            </div>
+            <div>
+              <input placeholder="Phone number" type="text"/>
+            </div>
+            <div>
+              <input placeholder="Email" type="email"/>
+            </div>
+            <div>
+              <input class="message-box" placeholder="Message" type="text"/>
+            </div>
+            <div class="d-flex ">
+              <button>
+                SEND
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6 px-0">
+        <div class="map_container">
+          <div class="map-responsive">
+            <iframe
+              allowfullscreen
+              frameborder="0" height="300"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Piata+Unirii+Timisoara+Romania"
+              style="border:0; width: 100%; height:100%"
+              width="600"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+
+</html>
