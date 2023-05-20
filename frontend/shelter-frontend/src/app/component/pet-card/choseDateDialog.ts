@@ -86,38 +86,6 @@ export class ChoseDateDialogComponent {
       "refreshToken": string
     }
 
-    this.adoptionService.sendAdoption(adoptionRequest).pipe(
-      retry(3),
-      catchError((error) => {
-        if (error.status === 403) {
-          console.log('First request error: Token expired. Initiating second request...');
-          let refreshToken: RefreshTokenRequest = {
-            username: this.data.username,
-            token: localStorage.getItem('token')!
-          };
-          return this.tokenService.getRefreshToken(refreshToken);
-        } else {
-          throw error;
-        }
-      }),
-      switchMap((refreshTokenResponse) => {
-        console.log('Second request completed successfully');
-        let responseJson = JSON.parse(refreshTokenResponse.toString())
-        console.log(responseJson)
-        localStorage.removeItem('refreshToken');
-        localStorage.setItem('refreshToken', responseJson.refreshToken)
-        return of(refreshTokenResponse);
-      })
-    ).subscribe(
-      (response) => {
-        // Handle the response from the first or second request
-        // ...
-      },
-      (error) => {
-        console.log(error);
-        // Handle errors from the first or second request
-      }
-    );
-    console.log(adoptionRequest);
+    this.adoptionService.sendAdoption(adoptionRequest).subscribe()
   }
 }

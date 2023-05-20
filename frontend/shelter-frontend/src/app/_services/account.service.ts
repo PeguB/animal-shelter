@@ -30,9 +30,10 @@ export class AccountService {
   public get refreshTokenValue(): any{
     return localStorage.getItem('refreshToken');
   }
-  public get expirationDateFromToken(){
+  public isTokenExpired(){
+    const currentTime = Math.floor(Date.now() / 1000);
     console.log(this.getDecodedAccessToken(this.refreshTokenValue).exp);
-    return this.getDecodedAccessToken(this.refreshTokenValue).exp;
+    return this.getDecodedAccessToken(this.refreshTokenValue).exp < currentTime;
   }
 
   login(user: UserCredentials) {

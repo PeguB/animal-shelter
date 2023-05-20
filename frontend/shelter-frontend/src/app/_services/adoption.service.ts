@@ -14,14 +14,6 @@ export class AdoptionService {
 
   sendAdoption(body: AdoptionRequest): Observable<any> {
 
-    let refreshTkn = JSON.parse(localStorage.getItem('refreshToken')!);
-    console.log(refreshTkn)
-
-    let headers = new HttpHeaders({'Authorization': 'Bearer ' + refreshTkn});
-    console.log(headers.get('Authorization'));
-    const reqHeader = new HttpHeaders({
-      'Authorization': 'Bearer ' + refreshTkn
-    });
-    return this.http.post<AdoptionRequest>(`http://localhost:8080/adoption/send`, body, { headers: reqHeader })
+    return this.http.post<AdoptionRequest>(`http://localhost:8080/adoption/send`, body)
   }
 }

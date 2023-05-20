@@ -13,7 +13,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {RegisterComponent} from './component/register/register.component';
 import {AlertComponent} from './component/alert/alert.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {PetsComponent} from './pages/petsPage/pets.component';
 import {MatInputModule} from "@angular/material/input";
 import {PetCardComponent} from './component/pet-card/pet-card.component';
@@ -25,6 +25,7 @@ import {ChoseDateDialogComponent} from "./component/pet-card/choseDateDialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
+import {TokenInterceptor} from "./interceptors/TokenInterceptor";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,12 @@ import {DatePipe} from "@angular/common";
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
