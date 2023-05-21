@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pi.shelterservice.model.*;
 import pi.shelterservice.service.AuthenticationService;
-import pi.shelterservice.service.impl.AuthenticationServiceImpl;
 
 @RestController
 @RequestMapping("/v1/auth")
