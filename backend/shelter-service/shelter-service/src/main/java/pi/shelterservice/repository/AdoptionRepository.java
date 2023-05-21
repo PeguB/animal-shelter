@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface AdoptionRepository extends JpaRepository<AdoptionEntity, Integer> {
     List<AdoptionEntity> findByDateTime(LocalDate localDateTime);
+    List<AdoptionEntity> findAllByIdUser(Integer idUser);
 }

@@ -48,4 +48,11 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
     public ErrorResponse handleBadRequestForIncorrectAdoption(RuntimeException ex, WebRequest request){
         return ErrorResponse.create(ex,HttpStatus.BAD_REQUEST,ex.getMessage());
     }
+
+    @ExceptionHandler(value = {AdoptionNotFoundException.class})
+    public ErrorResponse handleAdoptionNotFound(Exception ex, WebRequest request){
+        return ErrorResponse.builder(ex,HttpStatus.NOT_FOUND,ex.getMessage())
+                .detail(ex.getMessage())
+                .build();
+    }
 }

@@ -10,16 +10,28 @@ import pi.shelterservice.service.AdoptionService;
 @RestController
 @RequestMapping(value = "/adoption")
 @CrossOrigin(origins = "*")
-public class AdaptionController {
+public class AdoptionController {
 
     private final AdoptionService adoptionService;
 
-    public AdaptionController(AdoptionService adoptionService) {
+    public AdoptionController(AdoptionService adoptionService) {
         this.adoptionService = adoptionService;
     }
 
     @PostMapping("/send")
     public ResponseEntity<AdoptionDTO> sendAdoption(@RequestBody AdoptionDTO adoptionDTO) {
         return new ResponseEntity<>(adoptionService.sendAdoption(adoptionDTO), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> acceptAdoption(@RequestBody AdoptionDTO adoptionDTO){
+        adoptionService.acceptAdoption(adoptionDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteAdoption(@RequestBody AdoptionDTO adoptionDTO){
+        adoptionService.deleteAdoption(adoptionDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
