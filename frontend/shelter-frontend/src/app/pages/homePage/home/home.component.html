@@ -18,7 +18,7 @@
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet"/>
+  <!--  <link href="css/style.css" rel="stylesheet"/>-->
 </head>
 
 <body>
@@ -43,10 +43,10 @@
                     where hearts and homes meet.
                   </p>
                   <div class="btn-box">
-                    <a class="btn-1" href="../pets">
+                    <a class="btn-1" href="#pets">
                       Our Pets
                     </a>
-                    <a class="btn-2" href="">
+                    <a class="btn-2" href="#about">
                       About Us
                     </a>
                   </div>
@@ -68,50 +68,55 @@
 </div>
 
 <!-- about section -->
-<section class="about_section layout_padding">
-  <div class="container">
-    <div class="detail-box">
-      <div class="heading_container">
-        <img alt="" src="assets/images/homePage/heading-img.png">
-        <h2>
-          About Us
-        </h2>
-      </div>
-      <p>
-        At Lucky Paws Rescue, we are dedicated to making a difference in the lives of our furry friends.
-        With a passionate team and a commitment to finding loving homes, we strive to create a brighter future for every
-        animal that comes our way.
-      </p>
-      <p [hidden]="!showFullContent">
-        Our ultimate joy comes from seeing the smiling faces of our happy customers who have found their perfect
-        companions,
-        forging lifelong bonds and bringing immeasurable joy to their lives.
-        Join our community of compassionate individuals and be a part of our mission to transform lives, one adoption at
-        a time.
-      </p>
-      <div *ngIf="showFullContent == false" class="btn-box">
-        <a (click)="expandContent()">
+<a id="about">
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="detail-box">
+        <div class="heading_container">
+          <img alt="" src="assets/images/homePage/heading-img.png">
+          <h2>
+            About Us
+          </h2>
+        </div>
+        <p>
+          At Lucky Paws Rescue, we are dedicated to making a difference in the lives of our furry friends.
+          With a passionate team and a commitment to finding loving homes, we strive to create a brighter future for
+          every
+          animal that comes our way.
+        </p>
+        <p [hidden]="!showFullContent">
+          Our ultimate joy comes from seeing the smiling faces of our happy customers who have found their perfect
+          companions,
+          forging lifelong bonds and bringing immeasurable joy to their lives.
+          Join our community of compassionate individuals and be a part of our mission to transform lives, one adoption
+          at
+          a time.
+        </p>
+        <div *ngIf="showFullContent == false" class="btn-box">
+          <a (click)="expandContent()">
             <span>
               Read More
             </span>
-          <img alt="" src="assets/images/homePage/link-arrow.png">
-        </a>
-      </div>
-      <div *ngIf="showFullContent == true" class="btn-box">
-        <a (click)="withdrawContent()">
+            <img alt="" src="assets/images/homePage/link-arrow.png">
+          </a>
+        </div>
+        <div *ngIf="showFullContent == true" class="btn-box">
+          <a (click)="withdrawContent()">
             <span>
               Show less
             </span>
-          <img alt="" src="assets/images/homePage/link-arrow.png">
-        </a>
+            <img alt="" src="assets/images/homePage/link-arrow.png">
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</a>
+
 <!-- end about section -->
 
 <!-- animal section -->
-<section class="animal_section layout_padding">
+<section class="animal_section layout_padding" id="pets">
   <div class="container">
     <div class="animal_container">
       <div class="box b1">
@@ -258,41 +263,31 @@
     <div class="food_container">
       <div class="box">
         <div class="img-box">
-          <img alt="" src="assets/images/homePage/f1.png">
+          <img alt="" height="400" src="assets/images/homePage/step1.png" width="400">
         </div>
         <div class="detail-box">
           <h3>
-            <span>Make an &nbsp;</span>account
+            <span>1. Make an &nbsp;</span>account
           </h3>
         </div>
       </div>
       <div class="box">
         <div class="img-box">
-          <img alt="" src="assets/images/homePage/f1.png">
+          <img alt="" height="400" src="assets/images/homePage/step2.png" width="400">
         </div>
         <div class="detail-box">
           <h3>
-            <span>Choose your &nbsp;</span>friend
+            <span>2. Choose your &nbsp;</span>friend
           </h3>
         </div>
       </div>
       <div class="box">
         <div class="img-box">
-          <img alt="" src="assets/images/homePage/f1.png">
+          <img alt="" height="400" src="assets/images/homePage/step3.png" width="400">
         </div>
         <div class="detail-box">
           <h3>
-            <span>Pick &nbsp;</span>a date
-          </h3>
-        </div>
-      </div>
-      <div class="box">
-        <div class="img-box">
-          <img alt="" src="assets/images/homePage/f2.png">
-        </div>
-        <div class="detail-box">
-          <h3>
-            <span>Let us &nbsp;</span>do the rest
+            <span>3. Pick &nbsp;</span>a date
           </h3>
         </div>
       </div>
