@@ -1,12 +1,12 @@
 package pi.shelterservice.service.impl;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import pi.shelterservice.entity.AdoptionEntity;
 import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.UserEntity;
 import pi.shelterservice.entity.enums.AdoptionStatus;
+import pi.shelterservice.entity.enums.AnimalStatus;
 import pi.shelterservice.error.AdoptionNotFoundException;
 import pi.shelterservice.error.AnimalNameDoNotExistException;
 import pi.shelterservice.error.UsernameDoNotExistException;
@@ -45,7 +45,7 @@ public class AdoptionServiceImpl implements AdoptionService {
                 .idAnimal(animalEntity.getId())
                 .adoptionStatus(AdoptionStatus.PENDING)
                 .build();
-        return objectMapper.convertValue(adoptionRepository.save(adoptionEntity), AdoptionDTO.class);
+        return adoptionDTO;
     }
 
     @Override
@@ -59,7 +59,10 @@ public class AdoptionServiceImpl implements AdoptionService {
                 .idAnimal(adoption.getIdAnimal())
                 .adoptionStatus(AdoptionStatus.ACCEPTED)
                 .build();
+        AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
+        animalEntity.setAdoptionStatus(AnimalStatus.ADOPTED);
         adoptionRepository.save(adoptionEntity);
+        animalRepository.save(animalEntity);
     }
 
     @Override
@@ -88,12 +91,11 @@ public class AdoptionServiceImpl implements AdoptionService {
     private AdoptionEntity getAdoptionEntity(AdoptionDTO adoptionDTO) {
         UserEntity user = findUser(adoptionDTO.getUsername());
         AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
-        AdoptionEntity adoption = adoptionRepository
+        return adoptionRepository
                 .findAllByIdUser(user.getId())
                 .stream()
                 .filter(adoptionEntity -> adoptionEntity.getIdAnimal().equals(animalEntity.getId()) &&
                         adoptionEntity.getDateTime().equals(adoptionDTO.getDateTime()))
-                .findFirst().orElseThrow(()->new AdoptionNotFoundException(adoptionDTO));
-        return adoption;
+                .findFirst().orElseThrow(() -> new AdoptionNotFoundException(adoptionDTO));
     }
 }
