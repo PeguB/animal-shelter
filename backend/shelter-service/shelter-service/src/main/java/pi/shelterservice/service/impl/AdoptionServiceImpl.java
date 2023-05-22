@@ -1,5 +1,6 @@
 package pi.shelterservice.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import pi.shelterservice.entity.AdoptionEntity;
@@ -44,8 +45,7 @@ public class AdoptionServiceImpl implements AdoptionService {
                 .idAnimal(animalEntity.getId())
                 .adoptionStatus(AdoptionStatus.PENDING)
                 .build();
-        adoptionRepository.save(adoptionEntity);
-        return adoptionDTO;
+        return objectMapper.convertValue(adoptionRepository.save(adoptionEntity), AdoptionDTO.class);
     }
 
     @Override
