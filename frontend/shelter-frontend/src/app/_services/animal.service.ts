@@ -12,6 +12,6 @@ export class AnimalService {
   }
 
   getAnimals(): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`http://localhost:8080/animal`, {responseType: 'json'})
+    return this.http.get<Animal[]>(`http://localhost:8081/animal`, {responseType: 'json'})
   }
 }

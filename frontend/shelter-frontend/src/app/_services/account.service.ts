@@ -55,7 +55,7 @@ export class AccountService {
   }
 
   register(user: User) {
-    return this.http.post(`http://localhost:8080/v1/auth/register`, user);
+    return this.http.post(`http://localhost:8081/v1/auth/register`, user);
   }
   getRefreshToken(refreshToken: RefreshTokenRequest){
     return this.http.post(`http://localhost:8080/v1/auth/refreshToken`,refreshToken)
