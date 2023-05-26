@@ -21,9 +21,9 @@ public class AdoptionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer id_user;
+    private Integer idUser;
 
-    private Integer id_animal;
+    private Integer idAnimal;
 
     private LocalDate dateTime;
 

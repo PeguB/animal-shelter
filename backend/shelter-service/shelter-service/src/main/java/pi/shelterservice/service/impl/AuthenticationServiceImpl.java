@@ -11,9 +11,7 @@ import pi.shelterservice.entity.UserEntity;
 import pi.shelterservice.error.EmailAlreadyExist;
 import pi.shelterservice.error.PhoneNumberAlreadyExist;
 import pi.shelterservice.error.UserAlreadyExist;
-import pi.shelterservice.model.AuthenticationResponse;
-import pi.shelterservice.model.AuthenticationRequest;
-import pi.shelterservice.model.RegisterRequest;
+import pi.shelterservice.model.*;
 import pi.shelterservice.repository.UserRepository;
 import pi.shelterservice.service.AuthenticationService;
 import pi.shelterservice.service.JwtService;
@@ -51,11 +49,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+        var jwtRefreshToken = jwtService.generateRefreshToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .refreshToken(jwtRefreshToken)
                 .build();
     }
-
+    public RefreshTokenResponse refreshToken(RefreshTokenRequest request){
+        var user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow();
+        String typeToken = jwtService.extractTypeToken(request.getToken());
+        String usernameFromToken =jwtService.extractUsername(request.getToken());
+        if(!typeToken.equals("access-token")) {
+            throw new RuntimeException();
+        }
+        if(!user.getUsername().equals(usernameFromToken)){
+            throw new RuntimeException();
+        }
+        var jwtRefreshToken = jwtService.generateRefreshToken(user);
+        return RefreshTokenResponse.builder()
+                .refreshToken(jwtRefreshToken)
+                .build();
+    }
     private void searchUser(RegisterRequest request){
         userRepository.findByUsername(request.username()).ifPresent(s -> {
             throw new UserAlreadyExist("This username is already taken");

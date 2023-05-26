@@ -3,17 +3,17 @@ import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AdoptionRequest} from "../_models/adoptionRequest";
 import jwt_decode from "jwt-decode";
+import {RefreshTokenRequest} from "../_models/refreshTokenRequest";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdoptionService {
+export class TokenService {
 
   constructor(private http: HttpClient) {
   }
 
-  sendAdoption(body: AdoptionRequest): Observable<any> {
-
-    return this.http.post<AdoptionRequest>(`http://localhost:8081/adoption/send`, body)
+  getRefreshToken(refreshToken: RefreshTokenRequest){
+    return this.http.post(`http://localhost:8081/v1/auth/refreshToken`,refreshToken)
   }
 }

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import pi.shelterservice.entity.AnimalEntity;
-import pi.shelterservice.entity.enums.AdaptionStatus;
+import pi.shelterservice.entity.enums.AnimalStatus;
 import pi.shelterservice.error.AnimalNameAlreadyExist;
 import pi.shelterservice.model.AnimalDTO;
 import pi.shelterservice.repository.AnimalRepository;
@@ -25,7 +25,7 @@ public class AnimalServiceImpl implements AnimalService {
 
     public List<AnimalDTO> findAllAnimals(){
         return objectMapper.convertValue(animalRepository.findAll().stream()
-                .filter(animal->animal.getAdoptionStatus().equals(AdaptionStatus.NOT_ADOPTED))
+                .filter(animal->animal.getAdoptionStatus().equals(AnimalStatus.NOT_ADOPTED))
                 .collect(Collectors.toList()), new TypeReference<List<AnimalDTO>>(){});
     }
     public AnimalDTO save(AnimalDTO animalDTO){

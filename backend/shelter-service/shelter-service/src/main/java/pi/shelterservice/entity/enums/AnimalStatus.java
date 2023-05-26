@@ -1,7 +1,6 @@
 package pi.shelterservice.entity.enums;
 
-public enum AdaptionStatus {
+public enum AnimalStatus {
     ADOPTED,
-    PENDING,
     NOT_ADOPTED
 }

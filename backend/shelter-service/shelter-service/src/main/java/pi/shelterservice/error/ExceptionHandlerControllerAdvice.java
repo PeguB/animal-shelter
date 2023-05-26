@@ -3,15 +3,12 @@ package pi.shelterservice.error;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.net.URI;
 
 @ControllerAdvice
 public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHandler {
@@ -47,5 +44,12 @@ public class ExceptionHandlerControllerAdvice extends ResponseEntityExceptionHan
     @ExceptionHandler(value = {LimitReachedForAdoptionException.class,UsernameDoNotExistException.class,AnimalNameDoNotExistException.class})
     public ErrorResponse handleBadRequestForIncorrectAdoption(RuntimeException ex, WebRequest request){
         return ErrorResponse.create(ex,HttpStatus.BAD_REQUEST,ex.getMessage());
+    }
+
+    @ExceptionHandler(value = {AdoptionNotFoundException.class})
+    public ErrorResponse handleAdoptionNotFound(Exception ex, WebRequest request){
+        return ErrorResponse.builder(ex,HttpStatus.NOT_FOUND,ex.getMessage())
+                .detail(ex.getMessage())
+                .build();
     }
 }

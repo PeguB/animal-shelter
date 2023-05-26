@@ -1,7 +1,6 @@
 package pi.shelterservice.model;
 
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 @Builder
 public record RegisterRequest(

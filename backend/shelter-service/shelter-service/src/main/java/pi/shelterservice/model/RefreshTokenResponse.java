@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AuthenticationResponse {
+public class RefreshTokenResponse {
 
-    private String token;
     private String refreshToken;
 }
