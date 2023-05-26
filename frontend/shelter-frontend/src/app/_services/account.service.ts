@@ -41,7 +41,7 @@ export class AccountService {
       token: string,
       refreshToken: string,
     }
-    return this.http.post(`http://localhost:8080/v1/auth/authenticate`, user)
+    return this.http.post(`http://localhost:8081/v1/auth/authenticate`, user)
       .pipe(map((tokenValue: any) => {
         let responseAuth : ResponseAuth = tokenValue;
         localStorage.setItem('token', JSON.stringify(tokenValue.token));
@@ -58,7 +58,7 @@ export class AccountService {
     return this.http.post(`http://localhost:8081/v1/auth/register`, user);
   }
   getRefreshToken(refreshToken: RefreshTokenRequest){
-    return this.http.post(`http://localhost:8080/v1/auth/refreshToken`,refreshToken)
+    return this.http.post(`http://localhost:8081/v1/auth/refreshToken`,refreshToken)
   }
 
   private getDecodedAccessToken(token: string): any {

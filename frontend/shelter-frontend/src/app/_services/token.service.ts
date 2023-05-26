@@ -14,6 +14,6 @@ export class TokenService {
   }
 
   getRefreshToken(refreshToken: RefreshTokenRequest){
-    return this.http.post(`http://localhost:8080/v1/auth/refreshToken`,refreshToken)
+    return this.http.post(`http://localhost:8081/v1/auth/refreshToken`,refreshToken)
   }
 }
