@@ -19,15 +19,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr *ngFor="let adoption of adoptionArray">
+              <td>{{adoption.firstName}}</td>
+              <td>{{adoption.lastName}}</td>
+              <td>{{adoption.phoneNumber}}</td>
+              <td>{{adoption.dateTime}}</td>
+              <td>{{adoption.animalName}}</td>
+              <td>{{adoption.adoptionStatus}}</td>
               <td>
-                <button class="btn btn-outline-success" type="button">Accept</button>
+                <button class="btn btn-outline-success" type="button" (click)="acceptAdoption(adoption)">Accept</button>
                 <button class="btn btn-outline-danger" type="button">Delete</button>
               </td>
             </tr>
