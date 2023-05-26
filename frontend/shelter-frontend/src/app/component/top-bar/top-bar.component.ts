@@ -35,6 +35,10 @@ export class TopBarComponent implements OnInit {
     return this.accountService.tokenSubject;
   }
 
+  public getRole(): string {
+    return this.accountService.tokenRole;
+  }
+
   public logOut(): void {
     return this.accountService.logout();
   }

@@ -27,23 +27,31 @@ export class AccountService {
     return this.getDecodedAccessToken(this.tokenValue).sub;
   }
 
-  public get refreshTokenValue(): any{
+  public get tokenRole(): string {
+    console.log(this.getDecodedAccessToken(this.tokenValue).role);
+    return this.getDecodedAccessToken(this.tokenValue).role;
+
+  }
+
+  public get refreshTokenValue(): any {
     return localStorage.getItem('refreshToken');
   }
-  public isTokenExpired(){
+
+  public isTokenExpired() {
     const currentTime = Math.floor(Date.now() / 1000);
     console.log(this.getDecodedAccessToken(this.refreshTokenValue).exp);
     return this.getDecodedAccessToken(this.refreshTokenValue).exp < currentTime;
   }
 
   login(user: UserCredentials) {
-    interface ResponseAuth{
+    interface ResponseAuth {
       token: string,
       refreshToken: string,
     }
+
     return this.http.post(`http://localhost:8081/v1/auth/authenticate`, user)
       .pipe(map((tokenValue: any) => {
-        let responseAuth : ResponseAuth = tokenValue;
+        let responseAuth: ResponseAuth = tokenValue;
         localStorage.setItem('token', JSON.stringify(tokenValue.token));
         localStorage.setItem('refreshToken', JSON.stringify(tokenValue.refreshToken));
       }))
@@ -57,8 +65,9 @@ export class AccountService {
   register(user: User) {
     return this.http.post(`http://localhost:8081/v1/auth/register`, user);
   }
-  getRefreshToken(refreshToken: RefreshTokenRequest){
-    return this.http.post(`http://localhost:8081/v1/auth/refreshToken`,refreshToken)
+
+  getRefreshToken(refreshToken: RefreshTokenRequest) {
+    return this.http.post(`http://localhost:8081/v1/auth/refreshToken`, refreshToken)
   }
 
   private getDecodedAccessToken(token: string): any {

@@ -61,7 +61,10 @@ export class LoginComponent implements OnInit {
         next: () => {
           console.log("Login successful");
           this.alertService.success('Login successful', {keepAfterRouteChange: true});
-          this.router.navigate(['../home'], {relativeTo: this.route});
+          if (this.accountService.tokenRole == 'USER')
+            this.router.navigate(['../home'], {relativeTo: this.route});
+          else if (this.accountService.tokenRole == 'ADMIN')
+            this.router.navigate(['../adoptions'], {relativeTo: this.route});
         },
         error: error => {
           this.handleError(error);

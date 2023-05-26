@@ -27,7 +27,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
 import {TokenInterceptor} from "./interceptors/TokenInterceptor";
-import {HomeComponent} from './pages/homePage/home/home.component';
+import {HomeComponent} from './pages/homePage/home.component';
+import { AdoptionsComponent } from './pages/adoptionsPage/adoptions/adoptions.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {HomeComponent} from './pages/homePage/home/home.component';
     QuestionForAdoptionDialog,
     MyDialogNotLoggedInComponent,
     ChoseDateDialogComponent,
-    HomeComponent
+    HomeComponent,
+    AdoptionsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+.row {
+  margin: 50px;
+}
+
+h2 {
+  color: #5E35B1;
+}
+
+td button {
+  margin-right: 5%;
+}
+
+#actions {
+  padding-left: 5%;
+}
+
+text {
+  margin-left: 2%;
+}
+
+th {
+  font-size: 1.2em;
+}
