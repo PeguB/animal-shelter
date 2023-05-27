@@ -22,4 +22,7 @@ export class AdoptionService {
   acceptAdoption(body: AdoptionRequest): Observable<any> {
     return this.http.put('http://localhost:8081/adoption', body)
   }
+  deleteAdoption(body: AdoptionRequest): Observable<any> {
+    return this.http.delete('http://localhost:8081/adoption',{body: body} )
+  }
 }

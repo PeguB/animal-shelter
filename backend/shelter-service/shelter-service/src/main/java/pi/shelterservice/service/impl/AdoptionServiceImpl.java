@@ -80,6 +80,10 @@ public class AdoptionServiceImpl implements AdoptionService {
         UserEntity user = findUser(adoptionDTO.getUsername());
         AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
         AdoptionEntity adoption = getAdoptionEntity(adoptionDTO, user, animalEntity);
+        if(adoption.getAdoptionStatus().equals(AdoptionStatus.ACCEPTED)){
+            adoptionRepository.saveAll(adoptionRepository.findAllByAnimal(animalEntity).stream()
+                    .peek((adoptionEntity -> adoptionEntity.setAdoptionStatus(AdoptionStatus.PENDING))).toList());
+        }
         adoptionRepository.delete(adoption);
 
     }

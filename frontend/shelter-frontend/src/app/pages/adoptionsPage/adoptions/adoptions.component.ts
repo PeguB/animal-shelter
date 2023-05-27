@@ -40,5 +40,20 @@ export class AdoptionsComponent implements OnInit {
 
     })
   }
+  deleteAdoption(adoption: Adoption): void{
+    let adoptionRequestDelete: AdoptionRequest = {
+      animalName: adoption.animalName,
+      dateTime: adoption.dateTime,
+      username: adoption.username
+    }
+    this.adoptionService.deleteAdoption(adoptionRequestDelete).subscribe(() => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate(['./'],{
+        relativeTo: this.route
+      });
+
+    })
+  }
 
 }
