@@ -32,7 +32,9 @@ export class TopBarComponent implements OnInit {
   }
 
   public getUserName(): string {
-    return this.accountService.tokenSubject;
+    if (this.isLoggedIn())
+      return this.accountService.tokenSubject;
+    return '';
   }
 
   public logOut(): void {
