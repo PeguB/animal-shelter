@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PetCardComponent } from './pet-card.component';
+import {PetCardComponent} from './pet-card.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('PetCardComponent', () => {
   let component: PetCardComponent;
@@ -8,9 +10,10 @@ describe('PetCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PetCardComponent ]
+      declarations: [PetCardComponent],
+      imports: [MatDialogModule, HttpClientTestingModule],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PetCardComponent);
     component = fixture.componentInstance;
