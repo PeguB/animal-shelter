@@ -1,0 +1,38 @@
+.row {
+  margin: 50px;
+}
+
+h2 {
+  color: #5E35B1;
+}
+
+td button {
+  margin-right: 5%;
+}
+
+#actions {
+  padding-left: 5%;
+}
+
+text {
+  margin-left: 2%;
+}
+
+th {
+  font-size: 1.2em;
+}
+
+.header-image {
+  background-size: cover;
+  /*transition: transform 0.2s ease-in-out;*/
+}
+
+/*.header-image:hover {*/
+/*  transform: scale(1.5);*/
+/*}*/
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

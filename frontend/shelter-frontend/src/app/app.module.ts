@@ -29,6 +29,7 @@ import {DatePipe} from "@angular/common";
 import {TokenInterceptor} from "./interceptors/TokenInterceptor";
 import {HomeComponent} from './pages/homePage/home.component';
 import { AdoptionsComponent } from './pages/adoptionsPage/adoptions/adoptions.component';
+import { UserAdoptionsComponent } from './pages/user-adoptions/user-adoptions.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AdoptionsComponent } from './pages/adoptionsPage/adoptions/adoptions.co
     MyDialogNotLoggedInComponent,
     ChoseDateDialogComponent,
     HomeComponent,
-    AdoptionsComponent
+    AdoptionsComponent,
+    UserAdoptionsComponent
   ],
   imports: [
     BrowserModule,
