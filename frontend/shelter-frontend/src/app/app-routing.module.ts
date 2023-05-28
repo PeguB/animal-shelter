@@ -6,6 +6,8 @@ import {PetsComponent} from "./pages/petsPage/pets.component";
 import {HomeComponent} from "./pages/homePage/home.component";
 import {AdoptionsComponent} from "./pages/adoptionsPage/adoptions/adoptions.component";
 import {UserAdoptionsComponent} from "./pages/user-adoptions/user-adoptions.component";
+import {AdminGuard} from "./interceptors/adminGuard";
+import {UserGuard} from "./interceptors/userGuard";
 
 const routes: Routes = [
   {
@@ -31,12 +33,14 @@ const routes: Routes = [
   {
     path: 'adoptions',
     title: 'Lucky Paws Rescue - All Adoptions',
-    component: AdoptionsComponent
+    component: AdoptionsComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'my_adoptions',
     title: 'Lucky Paws Rescue - Adoptions',
-    component: UserAdoptionsComponent
+    component: UserAdoptionsComponent,
+    canActivate: [UserGuard]
   },
   {
     path: '',

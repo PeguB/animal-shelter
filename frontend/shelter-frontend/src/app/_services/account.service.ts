@@ -36,7 +36,12 @@ export class AccountService {
   public get refreshTokenValue(): any {
     return localStorage.getItem('refreshToken');
   }
-
+  public isLoggedIn(): boolean {
+    if(localStorage.getItem('token') === null){
+      return false
+    }
+    return true;
+  }
   public isTokenExpired() {
     const currentTime = Math.floor(Date.now() / 1000);
     console.log(this.getDecodedAccessToken(this.refreshTokenValue).exp);
