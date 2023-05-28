@@ -7,16 +7,16 @@ import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.UserEntity;
 import pi.shelterservice.entity.enums.AdoptionStatus;
 import pi.shelterservice.entity.enums.AnimalStatus;
-import pi.shelterservice.error.AdoptionNotFoundException;
-import pi.shelterservice.error.AnimalNameDoNotExistException;
-import pi.shelterservice.error.UsernameDoNotExistException;
+import pi.shelterservice.error.*;
 import pi.shelterservice.model.AdoptionDTO;
 import pi.shelterservice.model.AdoptionViewDTO;
+import pi.shelterservice.model.UserAdoptionDTO;
 import pi.shelterservice.repository.AdoptionRepository;
 import pi.shelterservice.repository.AnimalRepository;
 import pi.shelterservice.repository.UserRepository;
 import pi.shelterservice.service.AdoptionService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,6 +39,9 @@ public class AdoptionServiceImpl implements AdoptionService {
     @Override
     public AdoptionDTO sendAdoption(AdoptionDTO adoptionDTO) {
 
+        if(adoptionDTO.getDateTime().isBefore(LocalDate.now())){
+            throw new InvalidDateException();
+        }
         UserEntity user = findUser(adoptionDTO.getUsername());
         AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
 
@@ -48,6 +51,11 @@ public class AdoptionServiceImpl implements AdoptionService {
                 .animal(animalEntity)
                 .adoptionStatus(AdoptionStatus.PENDING)
                 .build();
+        boolean userAlreadySendAdoptionForAnimal = adoptionRepository.findAllByUser(user).stream()
+                .anyMatch(adoptionEntity1 -> adoptionEntity1.getAnimal().equals(animalEntity));
+        if(userAlreadySendAdoptionForAnimal){
+            throw new AdoptionAlreadyExistsException(adoptionDTO);
+        }
         adoptionRepository.save(adoptionEntity);
         return adoptionDTO;
     }
@@ -80,9 +88,11 @@ public class AdoptionServiceImpl implements AdoptionService {
         UserEntity user = findUser(adoptionDTO.getUsername());
         AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
         AdoptionEntity adoption = getAdoptionEntity(adoptionDTO, user, animalEntity);
-        if(adoption.getAdoptionStatus().equals(AdoptionStatus.ACCEPTED)){
+        if (adoption.getAdoptionStatus().equals(AdoptionStatus.ACCEPTED)) {
             adoptionRepository.saveAll(adoptionRepository.findAllByAnimal(animalEntity).stream()
                     .peek((adoptionEntity -> adoptionEntity.setAdoptionStatus(AdoptionStatus.PENDING))).toList());
+            animalEntity.setAdoptionStatus(AnimalStatus.NOT_ADOPTED);
+            animalRepository.save(animalEntity);
         }
         adoptionRepository.delete(adoption);
 
@@ -101,6 +111,21 @@ public class AdoptionServiceImpl implements AdoptionService {
                         .lastName(adoptionEntity.getUser().getLastName())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserAdoptionDTO> getAllAdoptionsForUser(String username) {
+        UserEntity user = findUser(username);
+        return adoptionRepository
+                .findAllByUser(user)
+                .stream()
+                .map(adoptionEntity -> UserAdoptionDTO.builder()
+                        .animalName(adoptionEntity.getAnimal().getAnimalName())
+                        .adoptionStatus(adoptionEntity.getAdoptionStatus())
+                        .photoIconPath(adoptionEntity.getAnimal().getPhotoIconPath())
+                        .dateTime(adoptionEntity.getDateTime())
+                        .build())
+                .toList();
     }
 
     private UserEntity findUser(String username) {

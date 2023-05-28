@@ -9,6 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {TokenService} from "../../_services/token.service";
 import {RefreshTokenRequest} from "../../_models/refreshTokenRequest";
 import {Router} from "@angular/router";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-my-dialog',
@@ -65,8 +66,7 @@ export class ChoseDateDialogComponent {
               private adoptionService: AdoptionService,
               private datePipe: DatePipe,
               private formBuilder: FormBuilder,
-              private tokenService: TokenService,
-              private router: Router) {
+              private alertService: AlertService) {
 
   }
 
@@ -82,10 +82,15 @@ export class ChoseDateDialogComponent {
       dateTime: this.datePipe.transform(this.adoptionForm.value.date, "yyyy-MM-dd")
     }
 
-    interface refreshResponse {
-      "refreshToken": string
-    }
-
-    this.adoptionService.sendAdoption(adoptionRequest).subscribe()
+    this.adoptionService.sendAdoption(adoptionRequest).subscribe({
+      next: () => {
+        this.alertService.success('Adoption was send successfully')
+        window.scrollTo(0,0);
+        console.log("Adoption send successful");
+      },
+      error: error => {
+        this.alertService.error(error.error.detail);
+        window.scrollTo(0,0);
+      }})
   }
 }

@@ -17,14 +17,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor="let adoption of adoptionsArray">
               <td>
-                <div [style.background-image]="'url(' + 'assets/images/LPR_Logo.png' + ')'" class="header-image"
+                <div [style.background-image]="'url(' + adoption.photoIconPath + ')'" class="header-image"
                      mat-card-avatar></div>
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{{adoption.animalName}}</td>
+              <td>{{adoption.dateTime}}</td>
+              <td>{{adoption.adoptionStatus}}</td>
               <td>
                 <button class="btn btn-outline-danger" type="button">Cancel</button>
               </td>
