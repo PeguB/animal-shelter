@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../_services/account.service";
-import {ComponentType} from "@angular/cdk/portal";
 import {MatDialog} from "@angular/material/dialog";
-import {MyDialogNotLoggedInComponent} from "../pet-card/dialogForNotLoggedIn.component";
 
 @Component({
   selector: 'app-top-bar',
@@ -46,20 +44,5 @@ export class TopBarComponent implements OnInit {
 
   public logOut(): void {
     return this.accountService.logout();
-  }
-
-  public selectTabUnderAuthentication(currentTab: number) {
-    if (!this.isLoggedIn()) {
-      this.choseDefaultDialog(MyDialogNotLoggedInComponent);
-    } else {
-      this.selectNavBarTab(currentTab);
-    }
-  }
-
-  private choseDefaultDialog(component: ComponentType<any>) {
-    this.dialog.open(component, {
-      width: '300px',
-      data: {}
-    });
   }
 }

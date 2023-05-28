@@ -24,12 +24,7 @@ th {
 
 .header-image {
   background-size: cover;
-  /*transition: transform 0.2s ease-in-out;*/
 }
-
-/*.header-image:hover {*/
-/*  transform: scale(1.5);*/
-/*}*/
 
 .row {
   display: flex;
