@@ -36,7 +36,6 @@ public class AdoptionController {
     }
 
     @DeleteMapping
-    @PreAuthorize(value = "hasAuthority('ADMIN')")
     public ResponseEntity<?> deleteAdoption(@RequestBody AdoptionDTO adoptionDTO){
         adoptionService.deleteAdoption(adoptionDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
