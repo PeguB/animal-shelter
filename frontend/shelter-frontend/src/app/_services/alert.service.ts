@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {filter, Observable, Subject} from "rxjs";
+import {filter, Observable, Subject, throwError} from "rxjs";
 import {Alert, AlertType} from "../_models/alert";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,15 @@ export class AlertService {
 
   clear(id = this.defaultId) {
     this.subject.next(new Alert({id}));
+  }
+
+  public handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

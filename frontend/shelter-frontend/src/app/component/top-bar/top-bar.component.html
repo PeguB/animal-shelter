@@ -6,22 +6,35 @@
   />
   <span>Lucky Paws Rescue</span>
   <span class="spacer"></span>
-  <button (click)="selectNavBarTab(1)" [class.mat-active]="isTabSelected(1)" mat-button routerLink="../home"
-          routerLinkActive="active">
-    <mat-icon class="icon-display">home</mat-icon>
-    Home
-  </button>
-  <button (click)="selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)" mat-button routerLink="../pets"
-          routerLinkActive="active">
-    <mat-icon class="icon-display">pets</mat-icon>
-    Pets
-  </button>
-  <button (click)="selectNavBarTab(3)" [class.mat-active]="isTabSelected(3)" mat-button routerLink=""
-          routerLinkActive="active">
-    <mat-icon>favorite</mat-icon>
-    Adopt
+  <ng-template [ngIf]="!isLoggedIn() || (isLoggedIn() && getRole() === 'USER')">
+    <button (click)="selectNavBarTab(1)" [class.mat-active]="isTabSelected(1)" mat-button routerLink="../home"
+            routerLinkActive="active">
+      <mat-icon class="icon-display">home</mat-icon>
+      Home
+    </button>
+    <button (click)="selectNavBarTab(2)" [class.mat-active]="isTabSelected(2)" mat-button routerLink="../pets"
+            routerLinkActive="active">
+      <mat-icon class="icon-display">pets</mat-icon>
+      Pets
+    </button>
+    <button (click)="selectNavBarTab(3)" *ngIf="isLoggedIn() && getRole() === 'USER'"
+            [class.mat-active]="isTabSelected(3)"
+            mat-button
+            routerLink="../my_adoptions"
+            routerLinkActive="active">
+      <mat-icon>favorite</mat-icon>
+      Adoptions
+    </button>
+  </ng-template>
 
-  </button>
+  <ng-template [ngIf]="isLoggedIn() && getRole() === 'ADMIN'">
+    <button [class.mat-active]="true" mat-button routerLink="../adoptions"
+            routerLinkActive="active">
+      <mat-icon class="icon-display">home</mat-icon>
+      Adoption Requests
+    </button>
+  </ng-template>
+
   <span class="spacer"></span>
   <button (click)="selectNavBarTab(4)" *ngIf="!isLoggedIn(); else elseBlock" [class.mat-active]="isTabSelected(4)"
           class="auth-buttons" mat-raised-button

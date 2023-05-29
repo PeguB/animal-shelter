@@ -7,17 +7,18 @@ import pi.shelterservice.model.AnimalDTO;
 public class AnimalsUtil {
     private AnimalsUtil(){}
 
-    public static AnimalEntity createAnimalEntity(){
+    public static AnimalEntity createAnimalEntity(String animalName){
         return AnimalEntity.builder()
                 .adoptionStatus(AnimalStatus.NOT_ADOPTED)
-                .animalName("testAnimal")
+                .id(2)
+                .animalName(animalName)
                 .build();
     }
 
-    public static AnimalDTO createAnimalDTO(){
+    public static AnimalDTO createAnimalDTO(String animalName){
         return AnimalDTO.builder()
                 .adoptionStatus(AnimalStatus.NOT_ADOPTED.toString())
-                .animalName("testAnimal")
+                .animalName(animalName)
                 .build();
     }
 }

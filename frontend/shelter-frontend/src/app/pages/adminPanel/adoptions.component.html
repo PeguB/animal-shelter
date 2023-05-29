@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-12 mt-5">
+
+      <div class="card p-3">
+        <h2 class="text">Adoptions View List </h2>
+        <ng-template [ngIf]="adoptionArray.length === 0">
+          <h3 class="text">There are no adoptions at Lucky Paws Rescue</h3>
+        </ng-template>
+        <div *ngIf="adoptionArray.length > 0" class="card-body shadow">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Phone number</th>
+              <th scope="col">Picking Date</th>
+              <th scope="col">Animal Name</th>
+              <th scope="col">Status</th>
+              <th id="actions" scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let adoption of adoptionArray">
+              <td>{{adoption.firstName}}</td>
+              <td>{{adoption.lastName}}</td>
+              <td>{{adoption.phoneNumber}}</td>
+              <td>{{adoption.dateTime}}</td>
+              <td>{{adoption.animalName}}</td>
+              <td>{{adoption.adoptionStatus}}</td>
+              <td>
+                <button (click)="acceptAdoption(adoption)" class="btn btn-outline-success" type="button">Accept</button>
+                <button (click)="deleteAdoption(adoption)" class="btn btn-outline-danger" type="button">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+

@@ -7,16 +7,19 @@ import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.UserEntity;
 import pi.shelterservice.entity.enums.AdoptionStatus;
 import pi.shelterservice.entity.enums.AnimalStatus;
-import pi.shelterservice.error.AdoptionNotFoundException;
-import pi.shelterservice.error.AnimalNameDoNotExistException;
-import pi.shelterservice.error.UsernameDoNotExistException;
+import pi.shelterservice.error.*;
 import pi.shelterservice.model.AdoptionDTO;
+import pi.shelterservice.model.AdoptionViewDTO;
+import pi.shelterservice.model.UserAdoptionDTO;
 import pi.shelterservice.repository.AdoptionRepository;
 import pi.shelterservice.repository.AnimalRepository;
 import pi.shelterservice.repository.UserRepository;
 import pi.shelterservice.service.AdoptionService;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AdoptionServiceImpl implements AdoptionService {
@@ -36,40 +39,93 @@ public class AdoptionServiceImpl implements AdoptionService {
     @Override
     public AdoptionDTO sendAdoption(AdoptionDTO adoptionDTO) {
 
+        if(adoptionDTO.getDateTime().isBefore(LocalDate.now())){
+            throw new InvalidDateException();
+        }
         UserEntity user = findUser(adoptionDTO.getUsername());
         AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
 
         AdoptionEntity adoptionEntity = AdoptionEntity.builder()
                 .dateTime(adoptionDTO.getDateTime())
-                .idUser(user.getId())
-                .idAnimal(animalEntity.getId())
+                .user(user)
+                .animal(animalEntity)
                 .adoptionStatus(AdoptionStatus.PENDING)
                 .build();
+        boolean userAlreadySendAdoptionForAnimal = adoptionRepository.findAllByUser(user).stream()
+                .anyMatch(adoptionEntity1 -> adoptionEntity1.getAnimal().equals(animalEntity));
+        if(userAlreadySendAdoptionForAnimal){
+            throw new AdoptionAlreadyExistsException(adoptionDTO);
+        }
+        adoptionRepository.save(adoptionEntity);
         return adoptionDTO;
     }
 
     @Override
     public void acceptAdoption(AdoptionDTO adoptionDTO) {
-        AdoptionEntity adoption = getAdoptionEntity(adoptionDTO);
+        UserEntity user = findUser(adoptionDTO.getUsername());
+        AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
+        AdoptionEntity adoption = getAdoptionEntity(adoptionDTO, user, animalEntity);
 
         AdoptionEntity adoptionEntity = AdoptionEntity.builder()
                 .id(adoption.getId())
                 .dateTime(adoption.getDateTime())
-                .idUser(adoption.getIdUser())
-                .idAnimal(adoption.getIdAnimal())
+                .user(user)
+                .animal(animalEntity)
                 .adoptionStatus(AdoptionStatus.ACCEPTED)
                 .build();
-        AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
         animalEntity.setAdoptionStatus(AnimalStatus.ADOPTED);
+        List<AdoptionEntity> adoptionsListForAnimal = adoptionRepository.findAllByAnimal(animalEntity)
+                .stream()
+                .peek(adoptionEntity1 -> adoptionEntity1.setAdoptionStatus(AdoptionStatus.DECLINED))
+                .toList();
+        adoptionRepository.saveAll(adoptionsListForAnimal);
         adoptionRepository.save(adoptionEntity);
         animalRepository.save(animalEntity);
     }
 
     @Override
     public void deleteAdoption(AdoptionDTO adoptionDTO) {
-        AdoptionEntity adoption = getAdoptionEntity(adoptionDTO);
+        UserEntity user = findUser(adoptionDTO.getUsername());
+        AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
+        AdoptionEntity adoption = getAdoptionEntity(adoptionDTO, user, animalEntity);
+        if (adoption.getAdoptionStatus().equals(AdoptionStatus.ACCEPTED)) {
+            adoptionRepository.saveAll(adoptionRepository.findAllByAnimal(animalEntity).stream()
+                    .peek((adoptionEntity -> adoptionEntity.setAdoptionStatus(AdoptionStatus.PENDING))).toList());
+            animalEntity.setAdoptionStatus(AnimalStatus.NOT_ADOPTED);
+            animalRepository.save(animalEntity);
+        }
         adoptionRepository.delete(adoption);
 
+    }
+
+    @Override
+    public List<AdoptionViewDTO> getAllAdoptions() {
+        return adoptionRepository.findAll().stream()
+                .map(adoptionEntity -> AdoptionViewDTO.builder()
+                        .username(adoptionEntity.getUser().getUsername())
+                        .phoneNumber(adoptionEntity.getUser().getPhoneNumber())
+                        .adoptionStatus(adoptionEntity.getAdoptionStatus())
+                        .animalName(adoptionEntity.getAnimal().getAnimalName())
+                        .dateTime(adoptionEntity.getDateTime())
+                        .firstName(adoptionEntity.getUser().getFirstName())
+                        .lastName(adoptionEntity.getUser().getLastName())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserAdoptionDTO> getAllAdoptionsForUser(String username) {
+        UserEntity user = findUser(username);
+        return adoptionRepository
+                .findAllByUser(user)
+                .stream()
+                .map(adoptionEntity -> UserAdoptionDTO.builder()
+                        .animalName(adoptionEntity.getAnimal().getAnimalName())
+                        .adoptionStatus(adoptionEntity.getAdoptionStatus())
+                        .photoIconPath(adoptionEntity.getAnimal().getPhotoIconPath())
+                        .dateTime(adoptionEntity.getDateTime())
+                        .build())
+                .toList();
     }
 
     private UserEntity findUser(String username) {
@@ -88,13 +144,11 @@ public class AdoptionServiceImpl implements AdoptionService {
         return animalEntity.get();
     }
 
-    private AdoptionEntity getAdoptionEntity(AdoptionDTO adoptionDTO) {
-        UserEntity user = findUser(adoptionDTO.getUsername());
-        AnimalEntity animalEntity = findAnimal(adoptionDTO.getAnimalName());
+    private AdoptionEntity getAdoptionEntity(AdoptionDTO adoptionDTO, UserEntity user, AnimalEntity animalEntity) {
         return adoptionRepository
-                .findAllByIdUser(user.getId())
+                .findAllByUser(user)
                 .stream()
-                .filter(adoptionEntity -> adoptionEntity.getIdAnimal().equals(animalEntity.getId()) &&
+                .filter(adoptionEntity -> adoptionEntity.getAnimal().equals(animalEntity) &&
                         adoptionEntity.getDateTime().equals(adoptionDTO.getDateTime()))
                 .findFirst().orElseThrow(() -> new AdoptionNotFoundException(adoptionDTO));
     }

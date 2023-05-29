@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../_services/account.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-top-bar',
@@ -9,8 +10,10 @@ import {AccountService} from "../../_services/account.service";
 export class TopBarComponent implements OnInit {
 
   tabNumber: number;
+  active: string;
 
   constructor(
+    private dialog: MatDialog,
     private accountService: AccountService
   ) {
     this.tabNumber = 1;
@@ -33,6 +36,10 @@ export class TopBarComponent implements OnInit {
 
   public getUserName(): string {
     return this.accountService.tokenSubject;
+  }
+
+  public getRole(): string {
+    return this.accountService.tokenRole;
   }
 
   public logOut(): void {
