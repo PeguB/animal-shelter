@@ -4,8 +4,8 @@ import {LoginComponent} from "./component/login/login.component";
 import {RegisterComponent} from "./component/register/register.component";
 import {PetsComponent} from "./pages/petsPage/pets.component";
 import {HomeComponent} from "./pages/homePage/home.component";
-import {AdoptionsComponent} from "./pages/adoptionsPage/adoptions/adoptions.component";
-import {UserAdoptionsComponent} from "./pages/user-adoptions/user-adoptions.component";
+import {AdoptionsComponent} from "./pages/adminPanel/adoptions.component";
+import {UserAdoptionsComponent} from "./pages/adoptionsPage/user-adoptions.component";
 import {AdminGuard} from "./interceptors/adminGuard";
 import {UserGuard} from "./interceptors/userGuard";
 

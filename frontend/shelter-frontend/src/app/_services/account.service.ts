@@ -3,7 +3,7 @@ import {map} from "rxjs";
 import {Router} from "@angular/router";
 import {User} from "../_models/user";
 import {HttpClient} from "@angular/common/http";
-import {UserCredentials} from "../_models/user-credentials";
+import {UserCredentials} from "../_models/userCredentials";
 import jwt_decode from "jwt-decode";
 import {RefreshTokenRequest} from "../_models/refreshTokenRequest";
 
@@ -36,12 +36,14 @@ export class AccountService {
   public get refreshTokenValue(): any {
     return localStorage.getItem('refreshToken');
   }
+
   public isLoggedIn(): boolean {
-    if(localStorage.getItem('token') === null){
+    if (localStorage.getItem('token') === null) {
       return false
     }
     return true;
   }
+
   public isTokenExpired() {
     const currentTime = Math.floor(Date.now() / 1000);
     console.log(this.getDecodedAccessToken(this.refreshTokenValue).exp);

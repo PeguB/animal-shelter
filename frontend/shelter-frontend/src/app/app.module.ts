@@ -28,8 +28,8 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {DatePipe} from "@angular/common";
 import {TokenInterceptor} from "./interceptors/TokenInterceptor";
 import {HomeComponent} from './pages/homePage/home.component';
-import { AdoptionsComponent } from './pages/adoptionsPage/adoptions/adoptions.component';
-import { UserAdoptionsComponent } from './pages/user-adoptions/user-adoptions.component';
+import {AdoptionsComponent} from './pages/adminPanel/adoptions.component';
+import {UserAdoptionsComponent} from './pages/adoptionsPage/user-adoptions.component';
 
 @NgModule({
   declarations: [

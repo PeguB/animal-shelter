@@ -5,7 +5,7 @@ import {AccountService} from "../../_services/account.service";
 import {AlertService} from "../../_services/alert.service";
 import {first, throwError} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
-import {UserCredentials} from "../../_models/user-credentials";
+import {UserCredentials} from "../../_models/userCredentials";
 
 @Component({
     selector: 'app-login',

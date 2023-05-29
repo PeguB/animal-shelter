@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Adoption} from "../../../_models/adoption";
-import {AdoptionService} from "../../../_services/adoption.service";
-import {AdoptionRequest} from "../../../_models/adoptionRequest";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Adoption} from "../../_models/adoption";
+import {AdoptionService} from "../../_services/adoption.service";
+import {AdoptionRequest} from "../../_models/adoptionRequest";
 
 @Component({
   selector: 'app-adoptions',
@@ -13,9 +12,7 @@ export class AdoptionsComponent implements OnInit {
 
   adoptionArray: Array<Adoption>
 
-  constructor(private adoptionService: AdoptionService,
-              private route: ActivatedRoute,
-              private router: Router) {
+  constructor(private adoptionService: AdoptionService) {
   }
 
   ngOnInit(): void {

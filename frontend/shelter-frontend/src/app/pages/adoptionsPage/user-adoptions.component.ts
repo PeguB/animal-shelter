@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdoptionService} from "../../_services/adoption.service";
 import {UserAdoption} from "../../_models/userAdoption";
 import {AccountService} from "../../_services/account.service";
@@ -14,8 +14,7 @@ export class UserAdoptionsComponent implements OnInit {
   adoptionsArray: Array<UserAdoption>
 
   constructor(private adoptionService: AdoptionService,
-              private accountService: AccountService,
-              private changeDetector: ChangeDetectorRef
+              private accountService: AccountService
   ) {
   }
 
