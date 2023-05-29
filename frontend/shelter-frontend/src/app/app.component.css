@@ -4,8 +4,6 @@
 }
 
 .main-content {
-  /*to aign map*/
   padding-bottom: 60px;
-  /*min-height pt a forta footerul in josul paginii*/
   min-height: 60vh;
 }

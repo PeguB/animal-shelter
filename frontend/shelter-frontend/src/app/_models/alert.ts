@@ -21,5 +21,4 @@ export enum AlertType {
 export class AlertOptions {
   id?: string;
   autoClose?: boolean;
-  keepAfterRouteChange?: boolean;
 }

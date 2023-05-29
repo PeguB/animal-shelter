@@ -38,8 +38,6 @@ input:focus {
   font-size: 1.4em;
   margin-bottom: 3%;
   font-weight: 600;
-  /*TO DO: Check colors test options*/
-  /*color: #5E35B1;*/
 }
 
 .col-md-5 {
@@ -52,7 +50,6 @@ input:focus {
   vertical-align: -.125em;
   margin-right: 10px;
   fill: #5E35B1;
-  /*fill: #6c757d;*/
 }
 
 

@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {AdoptionRequest} from "../_models/adoptionRequest";
-import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,22 @@ export class AdoptionService {
   }
 
   sendAdoption(body: AdoptionRequest): Observable<any> {
-
     return this.http.post<AdoptionRequest>(`http://localhost:8081/adoption/send`, body)
+  }
+
+  getAdoptions(): Observable<any> {
+    return this.http.get('http://localhost:8081/adoption')
+  }
+
+  acceptAdoption(body: AdoptionRequest): Observable<any> {
+    return this.http.put('http://localhost:8081/adoption', body)
+  }
+
+  deleteAdoption(body: AdoptionRequest): Observable<any> {
+    return this.http.delete('http://localhost:8081/adoption', {body: body})
+  }
+
+  getAdoptionForUser(username: String): Observable<any> {
+    return this.http.get(`http://localhost:8081/adoption/${username}`);
   }
 }

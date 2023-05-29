@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-8 mt-5">
+
+      <div class="card p-3">
+        <h2 class="text">My Adoptions </h2>
+        <ng-template [ngIf]="adoptionsArray.length === 0">
+          <h3 class="text">You have not made any adoption yet.</h3>
+        </ng-template>
+        <div *ngIf="adoptionsArray.length > 0" class="card-body shadow">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Animal Name</th>
+              <th scope="col">Picking Date</th>
+              <th scope="col">Adoption Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let adoption of adoptionsArray">
+              <td>
+                <div [style.background-image]="'url(' + adoption.photoIconPath + ')'" class="header-image"
+                     mat-card-avatar></div>
+              </td>
+              <td>{{adoption.animalName}}</td>
+              <td>{{adoption.dateTime}}</td>
+              <td>{{adoption.adoptionStatus}}</td>
+              <td>
+                <button (click)="deleteAdoption(adoption)" class="btn btn-outline-danger" type="button">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+

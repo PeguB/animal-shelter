@@ -12,6 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    //console.log(this.accountService.tokenSubject)
     if (!request.url.includes('/v1/auth') && !request.url.includes('/animal')) {
       const modifiedRequest = request.clone({
         setHeaders: {
@@ -20,8 +21,9 @@ export class TokenInterceptor implements HttpInterceptor {
       });
       if (this.accountService.isTokenExpired()) {
         console.log(this.accountService.isTokenExpired())
+        console.log(this.accountService.tokenSubject)
         let refreshToken: RefreshTokenRequest = {
-          username: 'admin',
+          username: this.accountService.tokenSubject,
           token: localStorage.getItem('token')!.replace('"', "")
         };
         return this.accountService.getRefreshToken(refreshToken).pipe(
