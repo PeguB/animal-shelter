@@ -3,7 +3,7 @@ import {inject, TestBed} from '@angular/core/testing';
 import {AccountService} from './account.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
-import {UserCredentials} from "../_models/user-credentials";
+import {UserCredentials} from "../_models/userCredentials";
 
 describe('AccountService', () => {
   let service: AccountService;
@@ -47,13 +47,12 @@ describe('AccountService', () => {
   it('should remove tokens from local storage and navigate to login page', inject(
     [AccountService],
     (accountService: AccountService) => {
-      
+
       spyOn(localStorage, 'removeItem');
       spyOn(accountService.router, 'navigate');
 
       accountService.logout();
 
-      // Assert
       expect(localStorage.removeItem).toHaveBeenCalledWith('token');
       expect(accountService.router.navigate).toHaveBeenCalledWith(['../login']);
     }
