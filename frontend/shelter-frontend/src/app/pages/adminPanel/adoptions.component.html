@@ -5,7 +5,10 @@
 
       <div class="card p-3">
         <h2 class="text">Adoptions View List </h2>
-        <div class="card-body shadow">
+        <ng-template [ngIf]="adoptionArray.length === 0">
+          <h3 class="text">There are no adoptions at Lucky Paws Rescue</h3>
+        </ng-template>
+        <div *ngIf="adoptionArray.length > 0" class="card-body shadow">
           <table class="table table-hover">
             <thead>
             <tr>

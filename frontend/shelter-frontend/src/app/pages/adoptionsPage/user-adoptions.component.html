@@ -5,7 +5,10 @@
 
       <div class="card p-3">
         <h2 class="text">My Adoptions </h2>
-        <div class="card-body shadow">
+        <ng-template [ngIf]="adoptionsArray.length === 0">
+          <h3 class="text">You have not made any adoption yet.</h3>
+        </ng-template>
+        <div *ngIf="adoptionsArray.length > 0" class="card-body shadow">
           <table class="table table-hover">
             <thead>
             <tr>
