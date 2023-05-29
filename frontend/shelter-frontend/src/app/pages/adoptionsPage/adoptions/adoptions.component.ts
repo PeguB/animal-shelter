@@ -3,7 +3,6 @@ import {Adoption} from "../../../_models/adoption";
 import {AdoptionService} from "../../../_services/adoption.service";
 import {AdoptionRequest} from "../../../_models/adoptionRequest";
 import {ActivatedRoute, Router} from "@angular/router";
-import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-adoptions',
@@ -32,27 +31,22 @@ export class AdoptionsComponent implements OnInit {
       username: adoption.username
     }
     this.adoptionService.acceptAdoption(adoptionRequestUpdate).subscribe(() => {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate(['./'],{
-        relativeTo: this.route
-      });
-
+      this.adoptionService.getAdoptions().subscribe((adoptions) => {
+        this.adoptionArray = adoptions
+      })
     })
   }
-  deleteAdoption(adoption: Adoption): void{
+
+  deleteAdoption(adoption: Adoption): void {
     let adoptionRequestDelete: AdoptionRequest = {
       animalName: adoption.animalName,
       dateTime: adoption.dateTime,
       username: adoption.username
     }
     this.adoptionService.deleteAdoption(adoptionRequestDelete).subscribe(() => {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate(['./'],{
-        relativeTo: this.route
-      });
-
+      this.adoptionService.getAdoptions().subscribe((adoptions) => {
+        this.adoptionArray = adoptions
+      })
     })
   }
 
