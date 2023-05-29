@@ -24,7 +24,6 @@ export class AccountService {
   }
 
   public get tokenSubject(): string {
-    //console.log(this.getDecodedAccessToken(this.tokenValue).sub)
     return this.getDecodedAccessToken(this.tokenValue).sub;
   }
 

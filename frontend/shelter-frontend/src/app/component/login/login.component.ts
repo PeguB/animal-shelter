@@ -3,8 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AccountService} from "../../_services/account.service";
 import {AlertService} from "../../_services/alert.service";
-import {first, throwError} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
+import {first} from "rxjs";
 import {UserCredentials} from "../../_models/userCredentials";
 
 @Component({
@@ -36,8 +35,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    // console.log(this.accountService.userValue);
-    //route to home if user is logged in
     if (this.accountService.tokenValue) {
       this.router.navigate(['/']);
     }
@@ -59,29 +56,26 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          console.log("Login successful");
           this.alertService.success('Login successful', {keepAfterRouteChange: true});
+          window.scrollTo(0, 0);
+
           if (this.accountService.tokenRole == 'USER')
-            this.router.navigate(['../home'], {relativeTo: this.route});
+            setTimeout(() => {
+              this.router.navigate(['../home'], {relativeTo: this.route})
+            }, 2000);
+
           else if (this.accountService.tokenRole == 'ADMIN')
-            this.router.navigate(['../adoptions'], {relativeTo: this.route});
+            setTimeout(() => {
+              this.router.navigate(['../adoptions'], {relativeTo: this.route})
+            }, 2000);
         },
+
         error: error => {
-          this.handleError(error);
-          // this.alertService.error(error.error.detail);
+          this.alertService.handleError(error);
           this.alertService.error("Username or password fields are invalid.");
+          window.scrollTo(0, 0);
           this.loading = false;
         }
       });
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.error('An error occurred:', error.error);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

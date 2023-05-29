@@ -27,8 +27,8 @@
               <td>{{adoption.animalName}}</td>
               <td>{{adoption.adoptionStatus}}</td>
               <td>
-                <button class="btn btn-outline-success" type="button" (click)="acceptAdoption(adoption)">Accept</button>
-                <button class="btn btn-outline-danger" type="button" (click)="deleteAdoption(adoption)">Delete</button>
+                <button (click)="acceptAdoption(adoption)" class="btn btn-outline-success" type="button">Accept</button>
+                <button (click)="deleteAdoption(adoption)" class="btn btn-outline-danger" type="button">Delete</button>
               </td>
             </tr>
             </tbody>
@@ -37,10 +37,7 @@
       </div>
     </div>
 
-
   </div>
-  <!--  <div class="row-cols-1"><h3>Green Store</h3></div>-->
-  <!--  <div class="row-cols-1"><h3>Green Store</h3></div>-->
 
 </div>
 

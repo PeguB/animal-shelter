@@ -3,8 +3,7 @@ import {AbstractControl, FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AccountService} from "../../_services/account.service";
 import {AlertService} from "../../_services/alert.service";
-import {first, throwError} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
+import {first} from "rxjs";
 import {User} from "../../_models/user";
 
 @Component({
@@ -59,13 +58,18 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          console.log("Registration successful");
           this.alertService.success('Registration successful', {keepAfterRouteChange: true});
-          this.router.navigate(['../login'], {relativeTo: this.route});
+          this.loading = false;
+          window.scrollTo(0, 0);
+          setTimeout(() => {
+            this.router.navigate(['../login'], {relativeTo: this.route});
+          }, 2000)
+
         },
         error: error => {
-          this.handleError(error);
+          this.alertService.handleError(error);
           this.alertService.error(error.error.detail);
+          window.scrollTo(0, 0);
           this.loading = false;
         }
       });
@@ -78,15 +82,4 @@ export class RegisterComponent implements OnInit {
     }
     return null;
   }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.error('An error occurred:', error.error);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
-  }
-
 }

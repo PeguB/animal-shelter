@@ -4,11 +4,6 @@ import {AdoptionService} from "../../_services/adoption.service";
 import {AdoptionRequest} from "../../_models/adoptionRequest";
 import {DatePipe} from "@angular/common";
 import {FormBuilder, Validators} from "@angular/forms";
-import {catchError, first, map, of, retry, switchMap} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
-import {TokenService} from "../../_services/token.service";
-import {RefreshTokenRequest} from "../../_models/refreshTokenRequest";
-import {Router} from "@angular/router";
 import {AlertService} from "../../_services/alert.service";
 
 @Component({
@@ -85,12 +80,12 @@ export class ChoseDateDialogComponent {
     this.adoptionService.sendAdoption(adoptionRequest).subscribe({
       next: () => {
         this.alertService.success('Adoption was send successfully')
-        window.scrollTo(0,0);
-        console.log("Adoption send successful");
+        window.scrollTo(0, 0);
       },
       error: error => {
         this.alertService.error(error.error.detail);
-        window.scrollTo(0,0);
-      }})
+        window.scrollTo(0, 0);
+      }
+    })
   }
 }
