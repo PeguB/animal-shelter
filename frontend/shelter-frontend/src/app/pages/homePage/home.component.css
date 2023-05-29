@@ -224,6 +224,10 @@ a:focus {
   border-right: 2px solid #e7d619;
 }
 
+h1 span {
+  padding-top: 5%;
+}
+
 .slider_section .detail-box h1 {
   font-weight: bold;
   color: #010001;
@@ -388,6 +392,8 @@ a:focus {
 
 .animal_section .animal_container .box .detail-box h5 {
   font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 2%;
 }
 
 .animal_section .animal_container .box.b1 {
@@ -573,6 +579,7 @@ a:focus {
 .us_section .us_container .box .detail-box h6 {
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 1em;
   color: #0e0e0e;
 }
 
@@ -691,6 +698,7 @@ a:focus {
 
 .food_section .food_container .box .detail-box h3 {
   font-weight: bold;
+  font-size: 1.5em;
   color: #e7d619;
 }
 
