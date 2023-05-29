@@ -31,3 +31,18 @@ th {
   justify-content: center;
   align-items: center;
 }
+
+.status-accepted {
+  color: green;
+  font-weight: bold;
+}
+
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.status-declined {
+  color: red;
+  font-weight: bold;
+}

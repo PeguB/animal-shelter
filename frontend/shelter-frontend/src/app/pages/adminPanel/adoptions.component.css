@@ -21,3 +21,18 @@ td button {
 th {
   font-size: 1.2em;
 }
+
+.status-accepted {
+  color: green;
+  font-weight: bold;
+}
+
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.status-declined {
+  color: red;
+  font-weight: bold;
+}

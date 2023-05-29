@@ -28,7 +28,7 @@
               <td>{{adoption.phoneNumber}}</td>
               <td>{{adoption.dateTime}}</td>
               <td>{{adoption.animalName}}</td>
-              <td>{{adoption.adoptionStatus}}</td>
+              <td [ngClass]="{ 'status-accepted': adoption.adoptionStatus === 'ACCEPTED', 'status-pending': adoption.adoptionStatus === 'PENDING', 'status-declined': adoption.adoptionStatus === 'DECLINED' }">{{adoption.adoptionStatus}}</td>
               <td>
                 <button (click)="acceptAdoption(adoption)" class="btn btn-outline-success" type="button">Accept</button>
                 <button (click)="deleteAdoption(adoption)" class="btn btn-outline-danger" type="button">Delete</button>

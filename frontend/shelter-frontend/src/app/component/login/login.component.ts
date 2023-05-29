@@ -62,12 +62,12 @@ export class LoginComponent implements OnInit {
           if (this.accountService.tokenRole == 'USER')
             setTimeout(() => {
               this.router.navigate(['../home'], {relativeTo: this.route})
-            }, 2000);
+            }, 1000);
 
           else if (this.accountService.tokenRole == 'ADMIN')
             setTimeout(() => {
               this.router.navigate(['../adoptions'], {relativeTo: this.route})
-            }, 2000);
+            }, 1000);
         },
 
         error: error => {
