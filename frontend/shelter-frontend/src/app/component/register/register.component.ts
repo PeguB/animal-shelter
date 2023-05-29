@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
           window.scrollTo(0, 0);
           setTimeout(() => {
             this.router.navigate(['../login'], {relativeTo: this.route});
-          }, 2000)
+          }, 1000)
 
         },
         error: error => {

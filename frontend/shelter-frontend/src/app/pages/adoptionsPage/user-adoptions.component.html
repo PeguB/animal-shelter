@@ -27,7 +27,7 @@
               </td>
               <td>{{adoption.animalName}}</td>
               <td>{{adoption.dateTime}}</td>
-              <td>{{adoption.adoptionStatus}}</td>
+              <td  [ngClass]="{ 'status-accepted': adoption.adoptionStatus === 'ACCEPTED', 'status-pending': adoption.adoptionStatus === 'PENDING', 'status-declined': adoption.adoptionStatus === 'DECLINED' }">{{adoption.adoptionStatus}}</td>
               <td>
                 <button (click)="deleteAdoption(adoption)" class="btn btn-outline-danger" type="button">Delete</button>
               </td>

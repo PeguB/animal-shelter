@@ -29,6 +29,7 @@ button {
 
 .row {
   word-wrap: break-word;
+  height: 100px;
 }
 
 .icon-svg {
