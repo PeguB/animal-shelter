@@ -6,7 +6,6 @@ import pi.shelterservice.entity.AdoptionEntity;
 import pi.shelterservice.entity.AnimalEntity;
 import pi.shelterservice.entity.UserEntity;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository

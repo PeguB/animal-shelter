@@ -11,12 +11,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pi.shelterservice.entity.AnimalEntity;
+import pi.shelterservice.error.AnimalNameAlreadyExist;
 import pi.shelterservice.model.AnimalDTO;
 import pi.shelterservice.repository.AnimalRepository;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static pi.shelterservice.utils.AnimalsUtil.createAnimalDTO;
@@ -26,6 +28,7 @@ import static pi.shelterservice.utils.AnimalsUtil.createAnimalEntity;
 @SpringBootTest
 class AnimalServiceImplTest {
 
+    public static final String ANIMAL_TEST = "animal_test";
     @MockBean
     private AnimalRepository animalRepository;
 
@@ -43,8 +46,8 @@ class AnimalServiceImplTest {
     @Test
     void findAllAnimals_NotEmptyList_IncludesMultipleAnimalsWithDifferentStatus() {
 
-        AnimalEntity animalEntity = createAnimalEntity();
-        List<AnimalDTO> expectedList = List.of(createAnimalDTO());
+        AnimalEntity animalEntity = createAnimalEntity(ANIMAL_TEST);
+        List<AnimalDTO> expectedList = List.of(createAnimalDTO(ANIMAL_TEST));
         when(animalRepository.findAll()).thenReturn(List.of(animalEntity));
 
         assertEquals(expectedList,animalService.findAllAnimals());
@@ -52,10 +55,18 @@ class AnimalServiceImplTest {
 
     @Test
     void saveAnimal_animalEntity() {
-        AnimalEntity animalEntity = createAnimalEntity();
-        AnimalDTO animalDTO = createAnimalDTO();
+        AnimalEntity animalEntity = createAnimalEntity(ANIMAL_TEST);
+        AnimalDTO animalDTO = createAnimalDTO(ANIMAL_TEST);
         when(animalRepository.save(any(AnimalEntity.class))).thenReturn(animalEntity);
 
         assertEquals(animalDTO,animalService.save(animalDTO));
+    }
+
+    @Test
+    void saveAnimal_throwAnimalNameAlreadyExist() {
+        AnimalDTO animalDTO = createAnimalDTO(ANIMAL_TEST);
+        when(animalRepository.save(any(AnimalEntity.class))).thenThrow(AnimalNameAlreadyExist.class);
+
+        assertThrows(AnimalNameAlreadyExist.class,()->animalService.save(animalDTO));
     }
 }
