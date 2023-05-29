@@ -13,7 +13,7 @@ import {RefreshTokenRequest} from "../_models/refreshTokenRequest";
 export class AccountService {
 
   constructor(
-    private router: Router,
+    private _router: Router,
     private http: HttpClient
   ) {
 
@@ -36,11 +36,12 @@ export class AccountService {
     return localStorage.getItem('refreshToken');
   }
 
+  get router(): Router {
+    return this._router;
+  }
+
   public isLoggedIn(): boolean {
-    if (localStorage.getItem('token') === null) {
-      return false
-    }
-    return true;
+    return localStorage.getItem('token') !== null;
   }
 
   public isTokenExpired() {
@@ -65,7 +66,7 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['../login']);
+    this._router.navigate(['../login']);
   }
 
   register(user: User) {
@@ -78,7 +79,9 @@ export class AccountService {
 
   private getDecodedAccessToken(token: string): any {
     try {
-      return jwt_decode(token);
+      if (token)
+        return jwt_decode(token);
+      return null;
     } catch (Error) {
       console.log(Error)
       return null;

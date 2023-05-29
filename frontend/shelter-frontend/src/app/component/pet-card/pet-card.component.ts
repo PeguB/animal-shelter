@@ -15,35 +15,35 @@ export class PetCardComponent implements OnInit {
   @Input() title: string;
   @Input() subtitle: string | undefined;
   @Input() photoPath: string | undefined;
-  @Input() photoIconPath: string;
+  @Input() photoIconPath: string | undefined;
   @Input() age: number | undefined;
   @Input() weight: number | undefined;
   @Input() description: string | undefined;
-
-
-  ngOnInit(): void {
-  }
 
   constructor(private dialog: MatDialog,
               private accountService: AccountService) {
 
   }
 
-  openAdoptMeDialog(animalName: string, photoIconPath: string) {
-    if(localStorage.getItem('token')){
-      this.choseDialogWithAdoptionData(QuestionForAdoptionDialog,animalName, photoIconPath, this.accountService.tokenSubject)
-    }else{
+  ngOnInit(): void {
+  }
+
+  openAdoptMeDialog(animalName: string, photoIconPath: string | undefined) {
+    if (localStorage.getItem('token')) {
+      this.choseDialogWithAdoptionData(QuestionForAdoptionDialog, animalName, photoIconPath, this.accountService.tokenSubject)
+    } else {
       this.choseDefaultDialog(MyDialogNotLoggedInComponent)
     }
   }
-  private choseDialogWithAdoptionData(component: ComponentType<any>,animalName: string, photoIconPath:string, username: string){
+
+  private choseDialogWithAdoptionData(component: ComponentType<any>, animalName: string, photoIconPath: string | undefined, username: string) {
     const dialogRef = this.dialog.open(component, {
       width: '300px',
-      data: {animalName,username, photoIconPath}
+      data: {animalName, username, photoIconPath}
     });
   }
 
-  private choseDefaultDialog(component: ComponentType<any>){
+  private choseDefaultDialog(component: ComponentType<any>) {
     const dialogRef = this.dialog.open(component, {
       width: '300px',
       data: {}

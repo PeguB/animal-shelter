@@ -1,5 +1,5 @@
 export class Animal {
-  animalName : string;
+  animalName: string;
   age ?: number;
   weight ?: number;
   sex ?: string;
@@ -7,5 +7,5 @@ export class Animal {
   animalType ?: string;
   adoptionStatus ?: boolean;
   photoPath ?: string;
-  photoIconPath : string;
+  photoIconPath ?: string;
 }

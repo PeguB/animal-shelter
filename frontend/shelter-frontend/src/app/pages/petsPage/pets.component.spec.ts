@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PetsComponent } from './pets.component';
+import {PetsComponent} from './pets.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('PetsComponent', () => {
   let component: PetsComponent;
@@ -8,9 +9,10 @@ describe('PetsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PetsComponent ]
+      declarations: [PetsComponent],
+      imports: [HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PetsComponent);
     component = fixture.componentInstance;
